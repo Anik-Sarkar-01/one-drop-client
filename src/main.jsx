@@ -5,13 +5,16 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Route from './Routes/Route';
+import AuthProvider from './provider/AuthProvider';
 
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <div className='poppins-regular'>
-      <RouterProvider router={Route} />
+      <AuthProvider>
+        <RouterProvider router={Route} />
+      </AuthProvider>
     </div>
   </StrictMode>,
 )

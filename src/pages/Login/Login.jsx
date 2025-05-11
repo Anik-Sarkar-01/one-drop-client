@@ -11,16 +11,17 @@ const Login = () => {
         <div>
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col">
-                    <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold text-center">Login now!</h1>
+                    
+                    <div className="card bg-base-100 max-w-2xl shadow-2xl px-5 py-8">
+                        <div className="text-center lg:text-left">
+                        <h1 className="text-4xl font-bold text-center">Login Now!</h1>
                     </div>
-                    <div className="card bg-base-100 max-w-2xl shadow-2xl px-10 py-10">
                         <div className="card-body">
                             <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
                                 {/* email field */}
                                 <label className="label">Email</label>
                                 <input
-                                    type='email' placeholder='Email' className="input w-full" {...register("email", { required: "Email Address is required" })}
+                                    type='email' placeholder='Email' className="input w-sm" {...register("email", { required: "Email Address is required" })}
                                     aria-invalid={errors.mail ? "true" : "false"}
                                 />
                                 {errors.mail && <p className='text-red-500' role="alert">{errors.mail?.message}</p>}
@@ -28,7 +29,7 @@ const Login = () => {
                                 {/* password field */}
                                 <label className="label">Password</label>
                                 <input
-                                    type='password' placeholder='Password' className="input" {...register("password", { required: "Password is required" })}
+                                    type='password' placeholder='Password' className="input w-sm" {...register("password", { required: "Password is required" })}
                                     aria-invalid={errors.mail ? "true" : "false"}
                                 />
                                 {errors.password && <p className='text-red-500' role="alert">{errors.password?.message}</p>}

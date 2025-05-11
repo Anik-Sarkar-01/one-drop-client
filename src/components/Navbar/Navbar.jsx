@@ -10,7 +10,7 @@ const Navbar = () => {
             </div>
             <div className="flex-none">
                 <ul className="menu items-center menu-horizontal px-1">
-                    <li><a>Donation Request</a></li>
+                    <li><a>Donation Requests</a></li>
                     <li><a>Blog</a></li>
                 </ul>
             </div>
