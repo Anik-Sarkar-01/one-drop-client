@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const user = false;
@@ -29,7 +30,7 @@ const Navbar = () => {
                         <li><a>Logout</a></li>
                     </ul>
                 </div>
-            </div>: <> <button className='btn btn-ghost'>Login</button> </> }
+            </div>: <> <Link to={"/login"}  className='btn btn-ghost'>Login</Link> </> }
 
         </div>
     );
