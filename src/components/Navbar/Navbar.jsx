@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
-    const user = false;
+    const { user, logout } = useAuth();
+    const handleLogout = () => {
+        logout()
+        .then(() => {
+            console.log("Logout Successful");
+        })
+    }
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -26,11 +33,11 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><a>Dashboard</a></li>
-                        <li><a>Logout</a></li>
+                        <li><Link>Dashboard</Link></li>
+                        <li><button onClick={handleLogout}>Logout</button></li>
                     </ul>
                 </div>
-            </div>: <> <Link to={"/login"}  className='btn btn-ghost'>Login</Link> </> }
+            </div> : <> <Link to={"/login"} className='btn btn-ghost'>Login</Link> </>}
 
         </div>
     );

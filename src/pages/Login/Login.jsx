@@ -1,21 +1,34 @@
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from "../../hooks/useAuth";
 
 
 const Login = () => {
+    const { login } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     const onSubmit = data => {
-        console.log(data);
+        const email = data?.email;
+        const password = data?.password;
+        login(email, password)
+        .then(res => {
+            console.log(res.data);
+            navigate("/");
+        })
+        .catch(error => {
+            console.log(error.code);
+        })
+
     }
     return (
         <div>
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col">
-                    
+
                     <div className="card bg-base-100 max-w-2xl shadow-2xl px-5 py-8">
                         <div className="text-center lg:text-left">
-                        <h1 className="text-4xl font-bold text-center">Login Now!</h1>
-                    </div>
+                            <h1 className="text-4xl font-bold text-center">Login Now!</h1>
+                        </div>
                         <div className="card-body">
                             <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
                                 {/* email field */}
