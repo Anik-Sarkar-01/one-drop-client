@@ -7,8 +7,11 @@ import {
 import Route from './Routes/Route';
 
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={Route} />
+    <div className='poppins-regular'>
+      <RouterProvider router={Route} />
+    </div>
   </StrictMode>,
 )
