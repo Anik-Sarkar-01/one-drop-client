@@ -42,7 +42,7 @@ const CreateDonationRequest = () => {
     const onSubmit = data => {
         const donationRequest = {
             ...data,
-            donationStatus: "pending",
+            donationStatus: "Pending",
         }
 
         axiosPublic.post("/donation-requests", donationRequest)
