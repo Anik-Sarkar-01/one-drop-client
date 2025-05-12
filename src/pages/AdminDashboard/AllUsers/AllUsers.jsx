@@ -29,7 +29,7 @@ const AllUsers = () => {
                         >
                             <option value="all">All</option>
                             <option value="Active">Active</option>
-                            <option value="Block">Block</option>
+                            <option value="Blocked">Blocked</option>
                         </select>
                     </div>
                 </div>
@@ -44,21 +44,19 @@ const AllUsers = () => {
                                 <th>User Name</th>
                                 <th>User Role</th>
                                 <th>User Status</th>
-                                <th>#</th>
-                                <th>#</th>
-                                <th>#</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredUsers.map((user, index) => (
                                 <tr key={user._id}>
                                     <th>{index + 1}</th>
-                                    <td>
+                                    <td  className='py-10'>
                                         <div className="avatar">
-                                            <div className="mask mask-squircle h-12 w-12">
+                                            <div className="ring-primary ring-offset-base-100 w-20 rounded-full ring-2 ring-offset-2">
                                                 <img
-                                                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                                    alt="Avatar Tailwind CSS Component" />
+                                                    src={user?.avatar}
+                                                    alt="User Avatar" />
                                             </div>
                                         </div>
                                     </td>
@@ -66,9 +64,19 @@ const AllUsers = () => {
                                     <td>{user?.name}</td>
                                     <td>{user?.role}</td>
                                     <td>{user?.status}</td>
-                                    <td><button className='btn btn-primary btn-sm'>Block</button></td>
-                                    <td><button className='btn btn-error btn-sm'>Unblock</button></td>
-                                    <td><button className='btn btn-accent btn-sm'>Make Volunteer</button></td>
+                                    <td className="menu menu-horizontal">
+                                        <li>
+                                            <details>
+                                                <summary className='mt-14'> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path> </svg></summary>
+                                                <ul className="bg-base-100 relative right-0 top-20 z-10 rounded-t-none flex gap-2">
+                                                    <li><button className='btn btn-primary btn-sm'>Block</button></li>
+                                                    <li><button className='btn btn-error btn-sm'>Unblock</button></li>
+                                                    <li><button className='btn btn-accent btn-sm'>Make Volunteer</button></li>
+                                                    <li><button className='btn btn-accent btn-sm'>Make Admin</button></li>
+                                                </ul>
+                                            </details>
+                                        </li>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
