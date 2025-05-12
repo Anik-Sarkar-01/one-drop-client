@@ -1,18 +1,21 @@
 
-import useDonationRequests from '../../hooks/useDonationRequests';
+import { Link } from 'react-router-dom';
+import useRecentDonationRequests from '../../hooks/useRecentDonationRequests';
 import useUser from '../../hooks/useUser';
 
 const MyDonationRequest = () => {
-    const { donationRequests = [] } = useDonationRequests();
+    const { recentRequests = [] } = useRecentDonationRequests();
+
+    console.log(recentRequests);
     const { user } = useUser();
-   
+
 
     return (
-        <div>
+        <div className='space-y-10'>
             <h2 className='text-4xl font-semibold'>Welcome to the Dashboard - {user?.name}</h2>
 
             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-                <table className="table">
+                <table className="table table-xs">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -29,7 +32,7 @@ const MyDonationRequest = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {donationRequests.map((request, index) => (
+                        {recentRequests.map((request, index) => (
                             <tr key={request._id}>
                                 <th>{index + 1}</th>
                                 <td>{request?.recipientName}</td>
@@ -57,6 +60,9 @@ const MyDonationRequest = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className='flex justify-center'>
+                <Link to={"/dashboard/my-donation-requests"} className='btn '>View My All Request</Link>
             </div>
         </div>
     );
