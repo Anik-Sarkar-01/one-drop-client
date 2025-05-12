@@ -1,12 +1,20 @@
 import React from 'react';
 import useAdmin from '../../hooks/useAdmin';
 import { NavLink, Outlet } from 'react-router-dom';
-
-
-
+import useAuth from '../../hooks/useAuth';
+import Loading from '../../components/Loading/Loading';
 
 const DashboardLayout = () => {
-    const [isAdmin] = useAdmin();
+    const [isAdmin, isAdminLoading] = useAdmin();
+    const {loading} = useAuth();
+
+    if(loading){
+        return <Loading></Loading>
+    }
+
+    if(isAdminLoading){
+        return <Loading></Loading>
+    }
 
     return (
         <div className='flex'>
