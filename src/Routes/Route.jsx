@@ -8,6 +8,9 @@ import Profile from '../pages/Profile/Profile';
 import DashboardWelcome from '../pages/DashboardWelcome/DashboardWelcome';
 import CreateDonationRequest from '../pages/CreateDonationRequest/CreateDonationRequest';
 import MyDonationRequest from '../pages/MyDonationRequest/MyDonationRequest';
+import AllUsers from '../pages/AdminDashboard/AllUsers/AllUsers';
+import AllDonationRequests from '../pages/AdminDashboard/AllDonationRequests/AllDonationRequests';
+import ContentManagement from '../pages/AdminDashboard/ContentManagement/ContentManagement';
 
 const Route = createBrowserRouter([
   {
@@ -48,6 +51,19 @@ const Route = createBrowserRouter([
         path: "create-donation-request",
         element: <CreateDonationRequest></CreateDonationRequest>
       },
+      {
+        path: "all-users",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "all-donation-requests",
+        element: <AllDonationRequests></AllDonationRequests>
+      }, 
+      {
+        path: "content-management",
+        element: <ContentManagement></ContentManagement>
+      }
+
     ]
   }
 ]);

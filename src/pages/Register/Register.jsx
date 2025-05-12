@@ -47,7 +47,7 @@ const Register = () => {
                             upazila:  data?.upazila,
                             bloodGroup: data?.bloodGroup,
                             role: "donor",
-                            status: "active",
+                            status: "Active",
                         }
                         axiosPublic.post("/users", user)
                             .then((response) => {
