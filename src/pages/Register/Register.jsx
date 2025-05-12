@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Register = () => {
-    const { user, createUser, updateUserProfile } = useAuth();
-    console.log(user);
+    const { createUser, updateUserProfile, toastSuccess, toastError } = useAuth();
     const { register, reset, handleSubmit, watch, formState: { errors } } = useForm();
     const password = watch("password");
     const navigate = useNavigate();
     const [districts, setDistricts] = useState([]);
     const [upazilas, setUpazilas] = useState([]);
+    const axiosPublic = useAxiosPublic();
 
 
     useEffect(() => {
@@ -35,17 +36,38 @@ const Register = () => {
                 const user = res.user;
                 console.log(user);
                 const name = data.name;
-                const photo = data.photo;
-
-                updateUserProfile(name, photo)
+                const avatar = data.avatar;
+                updateUserProfile(name, avatar)
                     .then(() => {
+                        const user = {
+                            name: data?.name,
+                            email: data?.email,
+                            avatar: data?.avatar,
+                            district: data?.district,
+                            upazila:  data?.upazila,
+                            bloodGroup: data?.bloodGroup,
+                            role: "donor",
+                            status: "active",
+                        }
+                        axiosPublic.post("/users", user)
+                            .then((response) => {
+                                if (response.data.insertedId) {
+                                    toastSuccess("User Created Successfully.")
+                                }
+                            })
+                            .catch((error) => {
+                                toastError(`${error?.message}`)
+                            });
                         navigate("/");
                         reset();
                     })
-
+                    .catch((error) => {
+                        toastError(`${error?.code}`)
+                    })
             })
-        // console.log(navigate);
-        // console.log(reset);
+            .catch((error) => {
+                toastError(`${error?.code}`)
+            })
     }
 
     return (
@@ -69,10 +91,10 @@ const Register = () => {
                                 <input type="text" name='name' {...register("name", { required: true })} className="input w-sm" placeholder="Name" />
                                 {errors.name && <span className='text-red-500'>Name field is required</span>}
 
-                                {/* photo */}
+                                {/* avatar */}
                                 <label className="label">Avatar</label>
-                                <input type="url" name='name' {...register("photo", { required: true })} className="input w-sm" placeholder="Photo" />
-                                {errors.photo && <span className='text-red-500'>Photo Url field is required</span>}
+                                <input type="url" name='avatar' {...register("avatar", { required: true })} className="input w-sm" placeholder="avatar" />
+                                {errors.avatar && <span className='text-red-500'>Avatar is required</span>}
 
                                 {/* blood group */}
                                 <label className="label">Blood Group</label>

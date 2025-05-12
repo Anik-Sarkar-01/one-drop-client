@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
+import toast from 'react-hot-toast';
+
 
 
 const AuthProvider = ({ children }) => {
@@ -31,6 +33,14 @@ const AuthProvider = ({ children }) => {
         });
     }
 
+    const toastSuccess = (message) => {
+        toast.success(`${message}`);
+    }
+
+    const toastError = (message) => {
+        toast.error(`${message}`);
+    }
+
     const authInfo = {
         user,
         setUser,
@@ -40,6 +50,8 @@ const AuthProvider = ({ children }) => {
         login,
         logout,
         updateUserProfile,
+        toastSuccess,
+        toastError,
     }
 
     useEffect(() => {

@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 
 
 const Login = () => {
-    const { login } = useAuth();
+    const { login, toastSuccess, toastError } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const onSubmit = data => {
@@ -12,11 +12,13 @@ const Login = () => {
         const password = data?.password;
         login(email, password)
         .then(res => {
-            console.log(res.data);
+            if(res?.user) {
+                toastSuccess("Login Successful.")
+            }
             navigate("/");
         })
         .catch(error => {
-            console.log(error.code);
+            toastError(error?.code)
         })
 
     }
