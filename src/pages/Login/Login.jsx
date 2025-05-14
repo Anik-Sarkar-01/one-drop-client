@@ -36,18 +36,17 @@ const Login = () => {
                                 {/* email field */}
                                 <label className="label">Email</label>
                                 <input
-                                    type='email' placeholder='Email' className="input w-sm" {...register("email", { required: "Email Address is required" })}
-                                    aria-invalid={errors.mail ? "true" : "false"}
+                                    type='email' placeholder='Email' className="input w-sm" {...register("email", { required: true })}
+                                    
                                 />
-                                {errors.mail && <p className='text-red-500' role="alert">{errors.mail?.message}</p>}
+                                {errors.email && <p className='text-red-500' >Email is Required.</p>}
 
                                 {/* password field */}
                                 <label className="label">Password</label>
                                 <input
-                                    type='password' placeholder='Password' className="input w-sm" {...register("password", { required: "Password is required" })}
-                                    aria-invalid={errors.mail ? "true" : "false"}
+                                    type='password' placeholder='Password' className="input w-sm" {...register("password", { required: true })}
                                 />
-                                {errors.password && <p className='text-red-500' role="alert">{errors.password?.message}</p>}
+                                {errors.password && <p className='text-red-500'>Password is Required.</p>}
                                 <div><a className="link link-hover">Forgot password?</a></div>
                                 <button className="btn btn-neutral mt-4">Login</button>
                             </form>
