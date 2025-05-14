@@ -13,6 +13,8 @@ import AllDonationRequests from '../pages/AdminDashboard/AllDonationRequests/All
 import ContentManagement from '../pages/AdminDashboard/ContentManagement/ContentManagement';
 import AddBlog from '../pages/AdminDashboard/AddBlog/AddBlog';
 import SearchDonor from '../pages/SearchDonor/SearchDonor';
+import PendingDonationRequest from '../pages/PendingDonationRequest/PendingDonationRequest';
+import DonationRequestDetails from '../pages/DonationRequestDetails/DonationRequestDetails';
 
 const Route = createBrowserRouter([
   {
@@ -28,12 +30,20 @@ const Route = createBrowserRouter([
         element: <SearchDonor></SearchDonor>
       },
       {
+        path: "/donation-requests",
+        element: <PendingDonationRequest></PendingDonationRequest>
+      },
+      {
         path: "login",
         element: <Login></Login>
       },
       {
         path: "register",
         element: <Register></Register>
+      }, 
+      {
+        path: "donation-request-details/:id",
+        element: <DonationRequestDetails></DonationRequestDetails>
       }
     ]
   },
