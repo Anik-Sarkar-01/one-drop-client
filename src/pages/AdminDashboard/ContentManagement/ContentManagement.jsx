@@ -5,6 +5,9 @@ const ContentManagement = () => {
     return (
         <div className='flex justify-end'>
             <Link to={"/dashboard/content-management/add-blog"} className='btn btn-neutral'>Add Blog</Link>
+            <div>
+                
+            </div>
         </div>
     );
 };
