@@ -15,13 +15,13 @@ const Register = () => {
 
 
     useEffect(() => {
-        fetch("districts.json")
+        fetch("/districts.json")
             .then(res => res.json())
             .then(data => setDistricts(data[2].data))
     }, [])
 
     useEffect(() => {
-        fetch("upazilas.json")
+        fetch("/upazilas.json")
             .then(res => res.json())
             .then(data => setUpazilas(data[2].data))
     }, [])
