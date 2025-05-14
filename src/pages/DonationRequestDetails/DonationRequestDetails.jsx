@@ -6,14 +6,16 @@ import { useForm } from 'react-hook-form';
 
 import useUser from '../../hooks/useUser';
 import { useEffect } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 const DonationRequestDetails = () => {
     const params = useParams();
     const axiosPublic = useAxiosPublic();
     const { user } = useUser();
+    const { toastSuccess, toastError } = useAuth();
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
 
-    const { data: donationDetails, isPending, error } = useQuery({
+    const { data: donationDetails, isPending, refetch, error } = useQuery({
         queryKey: ['donationDetails', params?.id],
         queryFn: async () => {
             const { data } = await axiosPublic.get(`/request-details/${params?.id}`);
@@ -29,11 +31,24 @@ const DonationRequestDetails = () => {
     }, [user, setValue]);
 
     const onSubmit = data => {
-        console.log(data);
+        const donorDetails = {
+            ...data,
+            donationStatus: "Inprogress"
+        }
+
+        axiosPublic.patch(`/pending-donation-requests/${params?.id}`, donorDetails)
+            .then((response) => {
+                if (response.data.modifiedCount) {
+                    toastSuccess("Donation Confirmed");
+                    refetch();
+                }
+            })
+            .catch((error) => {
+                toastError(`${error?.message}`)
+            })
 
 
         document.getElementById('my_modal_5').close();
-
     }
 
 
