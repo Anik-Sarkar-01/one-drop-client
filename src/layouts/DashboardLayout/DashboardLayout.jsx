@@ -52,10 +52,10 @@ const DashboardLayout = () => {
                                 <NavLink to={"/dashboard"}>Volunteer Dashboard</NavLink>
                             </li>
                             <li>
-                                <NavLink to={"/dashboard/my-donation-requests"}>All Blood Donation Request</NavLink>
+                                <NavLink to={"/dashboard/all-donation-requests"}>All Blood Donation Request</NavLink>
                             </li>
                             <li>
-                                <NavLink to={"/dashboard/create-donation-request"}>Content Management</NavLink>
+                                <NavLink to={"/dashboard/content-management"}>Content Management</NavLink>
                             </li>
                         </>
                     }

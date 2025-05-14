@@ -1,5 +1,6 @@
 import React from 'react';
 import bannerImg from "../../../assets/banner-image.jpg"
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
 
@@ -17,8 +18,8 @@ const Banner = () => {
                     <h1 className="mb-5 text-[40px] font-semibold text-left"> OneDrop - Connecting Blood Donors and Recipients to Save Lives, One Drop at a Time!</h1>
                     <p className='mb-5 text-lg max-w-4xl'>Be a hero in someone's story. Join our trusted network to donate or request blood quickly, easily, and securely.</p>
                     <div className='flex gap-3'>
-                        <button className="btn btn-primary">Join as a donor</button>
-                        <button className="btn btn-primary">Search Donors</button>
+                        <Link to={"/register"} className="btn btn-primary">Join as a donor</Link>
+                        <Link to={"/search-donor"} className="btn btn-primary">Search Donors</Link>
                     </div>
                 </div>
             </div>

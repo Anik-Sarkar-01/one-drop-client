@@ -12,6 +12,7 @@ import AllUsers from '../pages/AdminDashboard/AllUsers/AllUsers';
 import AllDonationRequests from '../pages/AdminDashboard/AllDonationRequests/AllDonationRequests';
 import ContentManagement from '../pages/AdminDashboard/ContentManagement/ContentManagement';
 import AddBlog from '../pages/AdminDashboard/AddBlog/AddBlog';
+import SearchDonor from '../pages/SearchDonor/SearchDonor';
 
 const Route = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const Route = createBrowserRouter([
       {
         path: "/",
         element: <Banner></Banner>
+      },
+      {
+        path: "/search-donor",
+        element: <SearchDonor></SearchDonor>
       },
       {
         path: "login",
