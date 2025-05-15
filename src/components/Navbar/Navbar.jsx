@@ -7,6 +7,8 @@ import Loading from '../Loading/Loading';
 const Navbar = () => {
     const { user, logout, loading, toastSuccess } = useAuth();
 
+    console.log(user);
+
     if (loading) {
         return <Loading></Loading>
     }
@@ -49,7 +51,7 @@ const Navbar = () => {
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost w-12 btn-circle avatar">
                             <div className="ring-[#EB2C29] ring-offset-base-100  rounded-full ring-2 ring-offset-2">
-                                <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+                                <img src={user?.photoURL} />
                             </div>
                         </div>
                         <ul

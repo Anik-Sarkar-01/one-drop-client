@@ -5,6 +5,9 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import WelcomeMessage from '../../components/WelcomeMessage/WelcomeMessage';
 
+const imagebb_api_key = import.meta.env.VITE_imagebb_apikey;
+const imagebb_hosting_api = `https://api.imgbb.com/1/upload?key=${imagebb_api_key}`;
+
 const Register = () => {
     const { createUser, updateUserProfile, toastSuccess, toastError } = useAuth();
     const { register, reset, handleSubmit, watch, formState: { errors } } = useForm();
@@ -28,53 +31,64 @@ const Register = () => {
     }, [])
 
 
-    const onSubmit = data => {
-        const email = data.email;
-        const password = data.password;
-        createUser(email, password)
-            .then(() => {
-                const name = data.name;
-                const avatar = data.avatar;
-                updateUserProfile(name, avatar)
-                    .then(() => {
-                        const user = {
-                            name: data?.name,
-                            email: data?.email,
-                            avatar: data?.avatar,
-                            district: data?.district,
-                            upazila: data?.upazila,
-                            bloodGroup: data?.bloodGroup,
-                            role: "donor",
-                            status: "Active",
-                        }
-                        axiosPublic.post("/users", user)
-                            .then((response) => {
-                                if (response.data.insertedId) {
-                                    toastSuccess("User Created Successfully.")
+    const onSubmit = async (data) => {
+        const avatarFile = { image: data.avatar[0] };
+        const res = await axiosPublic.post(imagebb_hosting_api, avatarFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+        if (res.data.success) {
+            const email = data.email;
+            const password = data.password;
+            const avatarImgUrl = res?.data?.data?.display_url;
+            createUser(email, password)
+                .then((res) => {
+                    if (res.user) {
+                        const name = data?.name;
+                        const avatar = avatarImgUrl;
+                        updateUserProfile(name, avatar)
+                            .then(() => {
+                                const user = {
+                                    name: name,
+                                    email: email,
+                                    avatar: avatar,
+                                    district: data?.district,
+                                    upazila: data?.upazila,
+                                    bloodGroup: data?.bloodGroup,
+                                    role: "donor",
+                                    status: "Active",
                                 }
+                                axiosPublic.post("/users", user)
+                                    .then((response) => {
+                                        if (response.data.insertedId) {
+                                            toastSuccess("User Created Successfully.")
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        toastError(`${error?.message}`)
+                                    });
+                                navigate("/");
+                                reset();
                             })
                             .catch((error) => {
                                 toastError(`${error?.message}`)
-                            });
-                        navigate("/");
-                        reset();
-                    })
-                    .catch((error) => {
-                        toastError(`${error?.code}`)
-                    })
-            })
-            .catch((error) => {
-                toastError(`${error?.code}`)
-            })
+                            })
+                    }
+                })
+                .catch((error) => {
+                    toastError(`${error?.message}`)
+                })
+        }
     }
 
     return (
         <div>
             <WelcomeMessage heading={"Register with One Drop"} subheading={"Register today and give the gift of life. Every drop counts, every donor matters."}></WelcomeMessage>
-            <div className="hero bg-base-200 py-5">
-                <div className="hero-content flex-col">
+            <div className="hero bg-base-200 py-5 ">
+                <div className="hero-content flex-col bg-gray-100 xl:p-15">
                     <div className="card bg-base-100 min-w-sm md:min-w-3xl lg:min-w-4xl shadow-2xl px-10 py-10">
-                        <h2 className='font-semibold text-3xl border-b-4 border-red-500 w-fit mx-auto'>REGISTER HERE</h2>
+                        <h2 className='font-semibold text-3xl  w-fit mx-auto'><span className='text-red-500'>REGISTER</span> HERE</h2>
                         <div className="card-body">
                             <form onSubmit={handleSubmit(onSubmit)} className="fieldset space-y-5">
                                 <div className='flex flex-col md:flex-row  gap-4'>
@@ -92,7 +106,7 @@ const Register = () => {
                                 <div className='flex flex-col md:flex-row gap-4'>
                                     {/* avatar */}
                                     <label className="label text-sm font-semibold">AVATAR :</label>
-                                    <input type="url" name='avatar' {...register("avatar", { required: true })} className="input w-full" placeholder="avatar" />
+                                    <input type="file" name='avatar' {...register("avatar", { required: true })} className="file-input w-full" placeholder="avatar" />
                                     {errors.avatar && <span className='text-red-500'>Avatar is required</span>}
 
                                     {/* blood group */}
@@ -118,12 +132,14 @@ const Register = () => {
                                         {districts.map(district => <option key={district.id}>{district.name}</option>)}
                                     </select>
 
+
                                     {/* Upazila */}
                                     <label className="label text-sm font-semibold">UPAZILA :</label>
                                     <select {...register("upazila")} defaultValue="Select Upazila" className="select w-full">
                                         <option disabled={true}>Select Upazila</option>
                                         {upazilas.map(upazila => <option key={upazila.id}>{upazila.name}</option>)}
                                     </select>
+
                                 </div>
 
                                 <div className='flex flex-col md:flex-row gap-4'>

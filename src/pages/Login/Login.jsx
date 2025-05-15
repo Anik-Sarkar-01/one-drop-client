@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from "../../hooks/useAuth";
+import WelcomeMessage from "../../components/WelcomeMessage/WelcomeMessage";
 
 
 const Login = () => {
@@ -11,46 +12,43 @@ const Login = () => {
         const email = data?.email;
         const password = data?.password;
         login(email, password)
-        .then(res => {
-            if(res?.user) {
-                toastSuccess("Login Successful.")
-            }
-            navigate("/");
-        })
-        .catch(error => {
-            toastError(error?.code)
-        })
+            .then(res => {
+                if (res?.user) {
+                    toastSuccess("Login Successful.")
+                }
+                navigate("/");
+            })
+            .catch(error => {
+                toastError(error?.code)
+            })
 
     }
     return (
         <div>
-            <div className="hero bg-base-200 min-h-screen">
+            <WelcomeMessage heading={"Login to One Drop"} subheading={"Please login to your account to continue"}></WelcomeMessage>
+            <div className="hero bg-base-200 py-10">
                 <div className="hero-content flex-col">
-
-                    <div className="card bg-base-100 max-w-2xl shadow-2xl px-5 py-8">
-                        <div className="text-center lg:text-left">
-                            <h1 className="text-4xl font-bold text-center">Login Now!</h1>
-                        </div>
+                    <div className="card bg-base-100 w-sm md:w-lg shadow-2xl px-5 py-8">
+                        <h2 className='font-semibold text-3xl w-fit mx-auto'><span className='text-red-500'>LOGIN</span> HERE</h2>
                         <div className="card-body">
                             <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
                                 {/* email field */}
-                                <label className="label">Email</label>
+                                <label className="label text-sm font-semibold">EMAIL :</label>
                                 <input
-                                    type='email' placeholder='Email' className="input w-sm" {...register("email", { required: true })}
-                                    
+                                    type='email' placeholder='Email' className="input w-full" {...register("email", { required: true })}
+
                                 />
                                 {errors.email && <p className='text-red-500' >Email is Required.</p>}
 
                                 {/* password field */}
-                                <label className="label">Password</label>
+                                <label className="label text-sm font-semibold">PASSWORD :</label>
                                 <input
-                                    type='password' placeholder='Password' className="input w-sm" {...register("password", { required: true })}
+                                    type='password' placeholder='Password' className="input w-full" {...register("password", { required: true })}
                                 />
                                 {errors.password && <p className='text-red-500'>Password is Required.</p>}
-                                <div><a className="link link-hover">Forgot password?</a></div>
-                                <button className="btn btn-neutral mt-4">Login</button>
+                                <button className="btn w-48 mx-auto mt-4 bg-red-500 text-white">Login</button>
                             </form>
-                            <p className='text-center'>Don't have an Account? <Link to={"/register"} className='btn btn-neutral'>Register</Link></p>
+                            <p className='text-center'>Don't have an Account? <Link to={"/register"} className='btn btn-outline text-red-500'>Register</Link></p>
                         </div>
                     </div>
                 </div>
