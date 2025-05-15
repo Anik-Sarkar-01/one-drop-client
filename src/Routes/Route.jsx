@@ -16,6 +16,7 @@ import SearchDonor from '../pages/SearchDonor/SearchDonor';
 import PendingDonationRequest from '../pages/PendingDonationRequest/PendingDonationRequest';
 import DonationRequestDetails from '../pages/DonationRequestDetails/DonationRequestDetails';
 import Blog from '../pages/Blog/Blog';
+import BlogDetails from '../pages/BlogDetails/BlogDetails';
 
 const Route = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const Route = createBrowserRouter([
       {
         path: "donation-request-details/:id",
         element: <DonationRequestDetails></DonationRequestDetails>
+      },
+      {
+        path: "blog-details/:id",
+        element: <BlogDetails></BlogDetails>
       }
     ]
   },

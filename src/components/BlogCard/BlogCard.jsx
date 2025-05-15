@@ -1,8 +1,8 @@
-import React from 'react';
 import useAdmin from '../../hooks/useAdmin';
 
 const BlogCard = ({ blog }) => {
     const [isAdmin] = useAdmin();
+   
     return (
         <div className="card bg-base-100 w-96 shadow-sm">
             <figure>
