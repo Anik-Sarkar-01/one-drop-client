@@ -15,6 +15,7 @@ import AddBlog from '../pages/AdminDashboard/AddBlog/AddBlog';
 import SearchDonor from '../pages/SearchDonor/SearchDonor';
 import PendingDonationRequest from '../pages/PendingDonationRequest/PendingDonationRequest';
 import DonationRequestDetails from '../pages/DonationRequestDetails/DonationRequestDetails';
+import Blog from '../pages/Blog/Blog';
 
 const Route = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const Route = createBrowserRouter([
       {
         path: "/donation-requests",
         element: <PendingDonationRequest></PendingDonationRequest>
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>
       },
       {
         path: "login",

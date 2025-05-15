@@ -64,11 +64,7 @@ const DonationRequestDetails = () => {
     return (
         <div className="card bg-base-100 shadow-sm space-y-5 py-5">
             <div className='border w-fit mx-auto p-5'>
-                <figure className='h-62'>
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                        alt="Shoes" />
-                </figure>
+                
                 <div className='flex flex-col justify-center items-center space-y-3'>
                     <div className='flex gap-5'>
                         <h2>Requester Name: {donationDetails?.requesterName}</h2>
@@ -99,15 +95,15 @@ const DonationRequestDetails = () => {
                                 <p className="py-4">Press ESC key to close..</p>
                                 <div className="modal-action justify-center items-center">
                                     <form onSubmit={handleSubmit(onSubmit)} method="dialog" className='fieldset space-y-2'>
-                                        {/* name */}
+                                        {/*donor name */}
                                         <label className="label">Name</label>
-                                        <input readOnly type="text" name='name' {...register("name", { required: true })} className="input w-sm" placeholder="Name" />
-                                        {errors.name && <span className='text-red-500'>Name field is required</span>}
+                                        <input readOnly type="text" name='donorName' {...register("donorName", { required: true })} className="input w-sm" placeholder="Donor Name" />
+                                        {errors.donorName && <span className='text-red-500'>This field is required</span>}
 
-                                        {/* email */}
+                                        {/*donor email */}
                                         <label className="label">Email</label>
-                                        <input readOnly type="email" name='email' {...register("email", { required: true })} className="input w-sm" placeholder="Email" />
-                                        {errors.email && <span className='text-red-500'>Email field is required</span>}
+                                        <input readOnly type="email" name='donorEmail' {...register("donorEmail", { required: true })} className="input w-sm" placeholder="Donor Email" />
+                                        {errors.donorEmail && <span className='text-red-500'>This field is required</span>}
 
                                         <button className='btn w-fit btn-neutral'>Confirm</button>
                                     </form>

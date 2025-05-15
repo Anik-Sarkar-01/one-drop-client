@@ -18,7 +18,7 @@ const Navbar = () => {
             <div className="flex-none">
                 <ul className="menu items-center menu-horizontal px-1">
                     <li><Link to={"/donation-requests"}>Donation Requests</Link></li>
-                    <li><Link>Blog</Link></li>
+                    <li><Link to={"/blog"}>Blog</Link></li>
                 </ul>
             </div>
             {user ? <div className="flex-none">
