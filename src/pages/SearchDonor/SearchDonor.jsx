@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAuth from '../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
+import WelcomeMessage from '../../components/WelcomeMessage/WelcomeMessage';
+import DonorCard from '../../components/DonorCard/DonorCard';
 
 
 const SearchDonors = () => {
@@ -51,16 +53,16 @@ const SearchDonors = () => {
             toastError("Please select at least one filter.");
             return;
         }
-        setSearchParams(data); 
+        setSearchParams(data);
+        
     };
 
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4">Search Donors</h1>
+            <WelcomeMessage heading={"Find a Blood Donor"} subheading={"Find blood donors near you and save lives with every request."}></WelcomeMessage>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 justify-center items-center md:grid-cols-4">
-                
+            <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-10 justify-center items-center md:grid-cols-4">
                 <div>
                     <select {...register("bloodGroup")} className="select w-full">
                         <option value="">Select Your Blood Group</option>
@@ -96,29 +98,20 @@ const SearchDonors = () => {
                 </div>
 
                 <div>
-                    <button type='submit' className="btn btn-neutral w-full">Search</button>
+                    <button type='submit' className="btn bg-red-500 text-white w-full">Search</button>
                 </div>
             </form>
 
-            {/* Donors List */}
-            <div className="mt-8">
+            
+            <div className="pb-16">
                 {isFetching ? (
                     <div className='flex justify-center items-center'>
-                        <span className="loading loading-bars loading-lg"></span>
+                        <span className="loading loading-bars text-red-500 loading-lg"></span>
                     </div>
                 ) : (
                     donors.length > 0 && (
-                        <div className="grid gap-4 md:grid-cols-3">
-                            {donors.map((donor) => (
-                                <div key={donor._id} className="card bg-base-100 shadow-md p-4">
-                                    <h3 className="text-xl font-semibold">{donor.name}</h3>
-                                    <p>Blood Group: {donor.bloodGroup}</p>
-                                    <p>District: {donor.district}</p>
-                                    <p>Upazila: {donor.upazila}</p>
-                                    <p>Email: {donor.email}</p>
-                                    <button className="btn btn-outline btn-sm mt-2">Contact</button>
-                                </div>
-                            ))}
+                        <div className="grid gird-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8  place-items-center">
+                            {donors.map((donor) => <DonorCard key={donor._id} donor={donor}></DonorCard> )}
                         </div>
                     )
                 )}

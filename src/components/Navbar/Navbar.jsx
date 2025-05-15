@@ -36,8 +36,8 @@ const Navbar = () => {
 
                 </div>
                 <Link to={"/"} className="flex items-center gap-2">
-                    <img src={logo} className='w-18' alt="" />
-                    <p className='text-sm md:text-2xl font-semibold'>ONE <span className='text-[#EB2C29]'>DROP</span></p>
+                    <img src={logo} className='w-16' alt="" />
+                    <p className='text-sm md:text-xl font-semibold'>ONE <span className='text-[#EB2C29]'>DROP</span></p>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -61,7 +61,7 @@ const Navbar = () => {
                             <li><button onClick={handleLogout}>LOGOUT</button></li>
                         </ul>
                     </div>
-                </div> : <> <Link to={"/login"} className='btn btn-ghost'>LOGIN</Link> </>}
+                </div> : <> <Link to={"/login"} className='btn btn-ghost bg-red-500 text-white'>LOGIN</Link> </>}
             </div>
 
 

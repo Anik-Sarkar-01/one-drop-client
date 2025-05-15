@@ -46,9 +46,9 @@ const Login = () => {
                                     type='password' placeholder='Password' className="input w-full" {...register("password", { required: true })}
                                 />
                                 {errors.password && <p className='text-red-500'>Password is Required.</p>}
-                                <button className="btn w-48 mx-auto mt-4 bg-red-500 text-white">Login</button>
+                                <button className="btn w-48 mx-auto mt-4 bg-red-500 text-white">LOGIN</button>
                             </form>
-                            <p className='text-center'>Don't have an Account? <Link to={"/register"} className='btn btn-outline text-red-500'>Register</Link></p>
+                            <p className='text-center'>Don't have an Account? <Link to={"/register"} className='btn btn-outline text-red-500'>REGISTER</Link></p>
                         </div>
                     </div>
                 </div>

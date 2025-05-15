@@ -169,7 +169,7 @@ const Register = () => {
                                     {errors.confirmPassword && <span className='text-red-500'>{errors.confirmPassword.message}</span>}
                                 </div>
                                 <div className='flex justify-center'>
-                                    <button className="btn bg-red-500 text-white w-40 mt-4">REGISTER</button>
+                                    <button className="btn bg-red-500 text-white w-48 mt-4">REGISTER</button>
                                 </div>
                             </form>
                             <p className='text-center'>Already Registered? <Link className='btn btn-outline text-red-500' to={"/login"}>LOGIN</Link></p>
