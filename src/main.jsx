@@ -13,6 +13,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 
+import 'react-photo-view/dist/react-photo-view.css';
+
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(

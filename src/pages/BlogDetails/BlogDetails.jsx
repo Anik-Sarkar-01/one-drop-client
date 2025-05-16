@@ -4,11 +4,15 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../components/Loading/Loading';
 import parse from 'html-react-parser';
+import { FaHeart } from "react-icons/fa6";
+import { IoShareSocialSharp } from "react-icons/io5";
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+
+
 
 const BlogDetails = () => {
     const params = useParams();
     const axiosPublic = useAxiosPublic()
-
     const { data: blogDetails, isPending, } = useQuery({
         queryKey: ['blogDetails', params?.id],
         queryFn: async () => {
@@ -23,20 +27,21 @@ const BlogDetails = () => {
 
 
     return (
-        <div className="card lg:card-side bg-base-100 shadow-sm">
-            <figure>
-                <img
-                    src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-                    alt="Album" />
-            </figure>
-            <div className="card-body">
-                <h2 className="card-title">{blogDetails?.title}</h2>
-                <p>{parse(`${blogDetails?.content}`)}</p>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Listen</button>
-                </div>
+        <div className='w-full md:w-2xl rounded-lg lg:w-3xl xl:w-4xl mx-auto bg-gray-50 p-10 my-10 space-y-5 text-justify'>
+            <PhotoProvider>
+                <PhotoView src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp">
+                    <img className='w-full h-80 object-cover rounded-lg' src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp" alt="" />
+                </PhotoView>
+
+            </PhotoProvider>
+            <h2 className='text-2xl font-bold'>{blogDetails?.title.toUpperCase()}</h2>
+            <p className='text-lg'>{parse(blogDetails?.content)}</p>
+            <div className='flex gap-3 *:text-2xl text-red-500'>
+                <FaHeart />
+                <IoShareSocialSharp />
             </div>
         </div>
+
     );
 };
 

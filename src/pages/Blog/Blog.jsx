@@ -12,8 +12,8 @@ const Blog = () => {
 
     return (
         <div>
-            <p>Total Published Blogs - {publishedBlogs.length}</p>
-            <div className="grid grid-cols-3">
+            
+            <div className="grid gap-5  py-10 px-10 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
                 {
                     publishedBlogs.map(blog => <PublishedBlogCard key={blog._id} blog={blog}></PublishedBlogCard>)
                 }
