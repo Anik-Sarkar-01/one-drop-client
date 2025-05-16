@@ -45,7 +45,7 @@ const MyDonationRequest = () => {
 
     return (
         <div className='space-y-10'>
-            <WelcomeMessage heading={`Welcome to the dashboard - ${user?.name}`}></WelcomeMessage>
+            <WelcomeMessage heading={`Welcome to the dashboard - ${user?.name}`} subheading={""}></WelcomeMessage>
             {isAdmin ? <></> : <>
                 {
                     (recentRequests.length > 0) && <div>
@@ -96,7 +96,7 @@ const MyDonationRequest = () => {
                                                     )
                                                 }
                                             </td>
-                                            <td><Link to={"edit-donation-request"} className='btn btn-primary text-white btn-sm'>Edit</Link></td>
+                                            <td><Link to={`edit-donation-request/${request._id}`} className='btn btn-primary text-white btn-sm'>Edit</Link></td>
                                             <td><button className='btn btn-error text-white btn-sm'>Delete</button></td>
                                             <td><button className='btn btn-accent text-white btn-sm'>View</button></td>
                                         </tr>

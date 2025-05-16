@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const RequestCard = ({ request }) => {
-    console.log(request);
+    
     return (
         <div className="card w-96  shadow-2xl">
             <div className="card-body space-y-2">

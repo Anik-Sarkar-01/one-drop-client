@@ -79,7 +79,7 @@ const Route = createBrowserRouter([
         element: <CreateDonationRequest></CreateDonationRequest>
       },
       {
-        path: "edit-donation-request",
+        path: "edit-donation-request/:id",
         element: <EditDonationRequest></EditDonationRequest>
       },
       {
