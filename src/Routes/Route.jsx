@@ -7,7 +7,6 @@ import DashboardLayout from '../layouts/DashboardLayout/DashboardLayout';
 import Profile from '../pages/Profile/Profile';
 import DashboardHome from '../pages/DashboardHome/DashboardHome';
 import CreateDonationRequest from '../pages/CreateDonationRequest/CreateDonationRequest';
-import MyDonationRequest from '../pages/MyDonationRequest/MyDonationRequest';
 import AllUsers from '../pages/AdminDashboard/AllUsers/AllUsers';
 import AllDonationRequests from '../pages/AdminDashboard/AllDonationRequests/AllDonationRequests';
 import ContentManagement from '../pages/AdminDashboard/ContentManagement/ContentManagement';
@@ -18,6 +17,7 @@ import DonationRequestDetails from '../pages/DonationRequestDetails/DonationRequ
 import Blog from '../pages/Blog/Blog';
 import BlogDetails from '../pages/BlogDetails/BlogDetails';
 import EditDonationRequest from '../pages/EditDonationRequest/EditDonationRequest';
+import MyDonationRequests from '../pages/MyDonationRequests/MyDonationRequests';
 
 const Route = createBrowserRouter([
   {
@@ -72,7 +72,7 @@ const Route = createBrowserRouter([
       },
       {
         path: "my-donation-requests",
-        element: <MyDonationRequest></MyDonationRequest>
+        element: <MyDonationRequests></MyDonationRequests>
       },
       {
         path: "create-donation-request",
