@@ -86,7 +86,7 @@ const MyDonationRequest = () => {
 
     return (
         <div className='space-y-10'>
-            <WelcomeMessage heading={`Welcome to the dashboard - ${user?.name}`} subheading={"Find Recent Donation Requests Made by You below"}></WelcomeMessage>
+            <WelcomeMessage heading={`Welcome to the dashboard - ${user?.name}`} subheading={""}></WelcomeMessage>
             {isAdmin ? <>
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                     <div className="rounded-xl p-7 bg-gradient-to-l from-red-300 to-red-100 flex gap-2 items-center justify-evenly shadow-xl h-40 ">
