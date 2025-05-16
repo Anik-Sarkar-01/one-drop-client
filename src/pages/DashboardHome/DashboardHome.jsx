@@ -5,6 +5,7 @@ import useAdmin from '../../hooks/useAdmin';
 import WelcomeMessage from '../../components/WelcomeMessage/WelcomeMessage';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 
 const MyDonationRequest = () => {
@@ -14,11 +15,11 @@ const MyDonationRequest = () => {
     const [isAdmin] = useAdmin();
     const { toastSuccess, toastError } = useAuth();
 
-    const handleComplete = async (request) => {
+    const handleComplete = async (id) => {
         const status = {
             donationStatus: "Done",
         }
-        const { data } = await axiosPublic.patch(`/change-donation-status/${request?._id}`, status);
+        const { data } = await axiosPublic.patch(`/change-donation-status/${id}`, status);
         if (data.modifiedCount > 0) {
             toastSuccess("Status Updated.");
             refetch();
@@ -28,11 +29,11 @@ const MyDonationRequest = () => {
         }
     }
 
-    const handleCancel = async (request) => {
+    const handleCancel = async (id) => {
         const status = {
             donationStatus: "Canceled",
         }
-        const { data } = await axiosPublic.patch(`/change-donation-status/${request?._id}`, status)
+        const { data } = await axiosPublic.patch(`/change-donation-status/${id}`, status)
         if (data.modifiedCount > 0) {
             toastSuccess("Status Updated.");
             refetch();
@@ -40,6 +41,39 @@ const MyDonationRequest = () => {
         else {
             toastError("Error Occurred.")
         }
+    }
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                const { data } =await axiosPublic.delete(`/donation-requests/${id}`)
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your request has been deleted.",
+                        icon: "success"
+                    });
+                    refetch();
+                }
+                else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    });
+                }
+
+            }
+        });
     }
 
 
@@ -80,8 +114,8 @@ const MyDonationRequest = () => {
                                                 {
                                                     request?.donationStatus?.toLowerCase() === 'inprogress' && (
                                                         <div className='flex gap-2'>
-                                                            <button onClick={() => handleComplete(request)} className='btn text-white btn-success btn-sm'>Done</button>
-                                                            <button onClick={() => handleCancel(request)} className='btn text-white btn-error btn-sm'>Cancel</button>
+                                                            <button onClick={() => handleComplete(request._id)} className='btn text-white btn-success btn-sm'>Done</button>
+                                                            <button onClick={() => handleCancel(request._id)} className='btn text-white btn-error btn-sm'>Cancel</button>
                                                         </div>
                                                     )
                                                 }
@@ -96,8 +130,8 @@ const MyDonationRequest = () => {
                                                     )
                                                 }
                                             </td>
-                                            <td><Link to={`edit-donation-request/${request._id}`} className='btn btn-primary text-white btn-sm'>Edit</Link></td>
-                                            <td><button className='btn btn-error text-white btn-sm'>Delete</button></td>
+                                            <td><Link to={`edit-donation-request/${request?._id}`} className='btn btn-primary text-white btn-sm'>Edit</Link></td>
+                                            <td><button onClick={() => handleDelete(request?._id)} className='btn btn-error text-white btn-sm'>Delete</button></td>
                                             <td><button className='btn btn-accent text-white btn-sm'>View</button></td>
                                         </tr>
                                     ))}
