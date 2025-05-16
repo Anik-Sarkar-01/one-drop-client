@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import logo from '../../assets/logo.png'
 import Loading from '../Loading/Loading';
+import userPhoto from '../../assets/user.png'
 
 const Navbar = () => {
     const { user, logout, loading, toastSuccess } = useAuth();
@@ -19,6 +20,7 @@ const Navbar = () => {
                 toastSuccess("Logout Successful.")
             })
     }
+
 
     return (
         <div className="navbar h-24 bg-base-100 border-b-4 border-b-[#EB2C29]">
@@ -51,7 +53,7 @@ const Navbar = () => {
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost w-12 btn-circle avatar">
                             <div className="ring-[#EB2C29] ring-offset-base-100  rounded-full ring-2 ring-offset-2">
-                                <img src={user?.photoURL} />
+                                {user?.photoURL ? <img src={user?.photoURL} /> : <img src={userPhoto}></img>}
                             </div>
                         </div>
                         <ul

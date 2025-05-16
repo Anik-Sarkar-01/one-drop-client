@@ -4,26 +4,28 @@ import useUser from '../../hooks/useUser';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
+
+const imagebb_api_key = import.meta.env.VITE_imagebb_apikey;
+const imagebb_hosting_api = `https://api.imgbb.com/1/upload?key=${imagebb_api_key}`;
+
 const Profile = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [districts, setDistricts] = useState([]);
     const [upazilas, setUpazilas] = useState([]);
     const axiosPublic = useAxiosPublic();
-    const { user } = useUser();
+    const { user, refetch } = useUser();
     const [isEditable, setIsEditable] = useState(false);
-    const { toastSuccess, toastError } = useAuth();
-
-    console.log(isEditable);
+    const { toastSuccess, toastError, updateUserProfile } = useAuth();
 
     useEffect(() => {
         if (user) {
             reset({
-                email: user.email || '',
-                name: user.name || '',
-                avatar: user.avatar || '',
-                bloodGroup: user.bloodGroup || '',
-                district: user.district || '',
-                upazila: user.upazila || '',
+                email: user?.email || '',
+                name: user?.name || '',
+                avatar: user?.avatar || '',
+                bloodGroup: user?.bloodGroup || '',
+                district: user?.district || '',
+                upazila: user?.upazila || '',
             });
 
         }
@@ -41,21 +43,48 @@ const Profile = () => {
             .then(data => setUpazilas(data[2].data))
     }, [])
 
-    const onSubmit = data => {
-        axiosPublic.put(`/user/${data.email}`, data)
-            .then(response => {
-                if (response.data.modifiedCount) {
-                    toastSuccess("Successfully Updated.")
-                }
-                else {
-                    toastError("Nothing to update!")
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                toastError(`${error?.message}`)
-            });
-        setIsEditable(false);
+    const onSubmit = async (data) => {
+        console.log(data);
+        const avatarFile = { image: data.avatar[0] };
+        const res = await axiosPublic.post(imagebb_hosting_api, avatarFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+
+        if (res?.data?.success) {
+            const avatarImgUrl = res?.data?.data?.display_url;
+            const updateUser = {
+                name: data?.name,
+                email: data?.email,
+                avatar: avatarImgUrl,
+                district: data?.district,
+                upazila: data?.upazila,
+                bloodGroup: data?.bloodGroup,
+            }
+            updateUserProfile(data?.name, avatarImgUrl)
+                .then(() => {
+                    axiosPublic.put(`/user/${data.email}`, updateUser)
+                        .then(response => {
+                            if (response.data.modifiedCount) {
+                                toastSuccess("Successfully Updated.")
+                                refetch()
+                            }
+                            else {
+                                toastError("Nothing to update!")
+                            }
+                        })
+                        .catch((error) => {
+                            toastError(`${error?.message}`)
+                        });
+                    setIsEditable(false);
+                })
+                .catch((error) => {
+                    toastError(`${error?.message}`)
+                })
+        }
+
+
     }
 
     const handleCancel = () => {
@@ -68,7 +97,14 @@ const Profile = () => {
             <div className="hero-content flex-col">
                 <div className="card bg-base-100 max-w-2xl shadow-2xl px-5 py-8">
                     <div className="card-body">
-                        {(isEditable) ? <></> : <button onClick={() => setIsEditable(true)} className='btn btn-neutral w-fit absolute right-12 top-6'>Edit</button>}
+                        {(isEditable) ? <></> : <button onClick={() => setIsEditable(true)} className='btn bg-red-500 text-white w-fit absolute right-12 top-6'>Edit</button>}
+
+                        <div className="avatar flex justify-center">
+                            <div className="ring-red-500 ring-offset-base-100 w-24 rounded-full ring-2 ring-offset-2">
+                                <img src={user?.avatar} />
+                            </div>
+                        </div>
+
                         <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
                             {/* email */}
                             <label className="label">Email</label>
@@ -81,8 +117,9 @@ const Profile = () => {
 
                             {/* avatar */}
                             <label className="label">Avatar</label>
-                            <input disabled={!isEditable} type="url" name='avatar' {...register("avatar", { required: true })} className="input w-sm" placeholder="Avatar" />
+                            <input disabled={!isEditable} type="file" accept='image/*' name='avatar' {...register("avatar", { required: true })} className="file-input w-full" placeholder="avatar" />
                             {errors.avatar && <span className='text-red-500'>Avatar is required</span>}
+
 
                             {/* blood group */}
                             <label className="label">Blood Group</label>

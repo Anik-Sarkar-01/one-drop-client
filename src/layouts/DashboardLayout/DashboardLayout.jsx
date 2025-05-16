@@ -20,7 +20,7 @@ const DashboardLayout = () => {
 
     return (
         <div className='flex'>
-            <div className='w-64 min-h-screen bg-orange-400'>
+            <div className='w-36 lg:w-64 min-h-screen bg-red-400 font-semibold text-white'>
                 <ul className="menu">
                     {
                         (isAdmin) ? <>
@@ -60,7 +60,7 @@ const DashboardLayout = () => {
                         </>
                     }
 
-                    <div className="divider"></div>
+                    <div className="divider divider-neutral"></div>
 
                     {/* shared items */}
                     <li>
@@ -71,7 +71,7 @@ const DashboardLayout = () => {
                     </li>
                 </ul>
             </div>
-            <div className='flex-1 p-5'>
+            <div className='overflow-x-auto flex-1 p-5'>
                 <Outlet></Outlet>
             </div>
         </div>

@@ -1,0 +1,118 @@
+import { Link } from 'react-router-dom';
+import useRecentDonationRequests from '../../hooks/useRecentDonationRequests';
+import useUser from '../../hooks/useUser';
+import useAdmin from '../../hooks/useAdmin';
+import WelcomeMessage from '../../components/WelcomeMessage/WelcomeMessage';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAuth from '../../hooks/useAuth';
+
+
+const MyDonationRequest = () => {
+    const { recentRequests = [], refetch } = useRecentDonationRequests();
+    const axiosPublic = useAxiosPublic();
+    const { user } = useUser();
+    const [isAdmin] = useAdmin();
+    const { toastSuccess, toastError } = useAuth();
+
+    const handleComplete = async (request) => {
+        const status = {
+            donationStatus: "Done",
+        }
+        const { data } = await axiosPublic.patch(`/change-donation-status/${request?._id}`, status);
+        if (data.modifiedCount > 0) {
+            toastSuccess("Status Updated.");
+            refetch();
+        }
+        else {
+            toastError("Error Occurred.")
+        }
+    }
+
+    const handleCancel = async (request) => {
+        const status = {
+            donationStatus: "Canceled",
+        }
+        const { data } = await axiosPublic.patch(`/change-donation-status/${request?._id}`, status)
+        if (data.modifiedCount > 0) {
+            toastSuccess("Status Updated.");
+            refetch();
+        }
+        else {
+            toastError("Error Occurred.")
+        }
+    }
+
+
+    return (
+        <div className='space-y-10'>
+            <WelcomeMessage heading={`Welcome to the dashboard - ${user?.name}`}></WelcomeMessage>
+            {isAdmin ? <></> : <>
+                {
+                    (recentRequests.length > 0) && <div>
+                        <div className="overflow-x-auto rounded-box border border-gray-300">
+                            <table className="table table-sm">
+                                <thead>
+                                    <tr className='bg-red-500 text-white'>
+                                        <th className='py-5'>#</th>
+                                        <th>Recipient Name</th>
+                                        <th>Recipient Address</th>
+                                        <th>Donation Date</th>
+                                        <th>Donation Time</th>
+                                        <th>Blood Group</th>
+                                        <th>Donation Status</th>
+                                        <th>Donor Information</th>
+                                        <th>#</th>
+                                        <th>#</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {recentRequests.map((request, index) => (
+                                        <tr key={request._id}>
+                                            <th>{index + 1}</th>
+                                            <td>{request?.recipientName}</td>
+                                            <td>{request?.recipientUpazila}, {request?.recipientDistrict}</td>
+                                            <td>{request?.donationDate}</td>
+                                            <td>{request?.donationTime}</td>
+                                            <td>{request?.bloodGroup}</td>
+                                            <td className='flex py-8 flex-col justify-center items-center gap-2'>
+                                                <p className='font-semibold'>{request?.donationStatus}</p>
+                                                {
+                                                    request?.donationStatus?.toLowerCase() === 'inprogress' && (
+                                                        <div className='flex gap-2'>
+                                                            <button onClick={() => handleComplete(request)} className='btn text-white btn-success btn-sm'>Done</button>
+                                                            <button onClick={() => handleCancel(request)} className='btn text-white btn-error btn-sm'>Cancel</button>
+                                                        </div>
+                                                    )
+                                                }
+                                            </td>
+                                            <td>
+                                                {
+                                                    request?.donationStatus?.toLowerCase() === 'inprogress' && (
+                                                        <div className='text-center'>
+                                                            <p className='font-semibold'>{request?.donorName}</p>
+                                                            <p className='font-semibold'>{request?.donorEmail}</p>
+                                                        </div>
+                                                    )
+                                                }
+                                            </td>
+                                            <td><Link to={"edit-donation-request"} className='btn btn-primary text-white btn-sm'>Edit</Link></td>
+                                            <td><button className='btn btn-error text-white btn-sm'>Delete</button></td>
+                                            <td><button className='btn btn-accent text-white btn-sm'>View</button></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className='flex justify-center pt-5'>
+                            <Link to={"/dashboard/my-donation-requests"} className='btn btn-outline border-2 border-red-500 '>VIEW MY ALL REQUESTS</Link>
+                        </div>
+                    </div>
+                }
+
+            </>}
+        </div>
+    );
+};
+
+export default MyDonationRequest;

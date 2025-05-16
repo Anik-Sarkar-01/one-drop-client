@@ -5,7 +5,7 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import DashboardLayout from '../layouts/DashboardLayout/DashboardLayout';
 import Profile from '../pages/Profile/Profile';
-import DashboardWelcome from '../pages/DashboardWelcome/DashboardWelcome';
+import DashboardHome from '../pages/DashboardHome/DashboardHome';
 import CreateDonationRequest from '../pages/CreateDonationRequest/CreateDonationRequest';
 import MyDonationRequest from '../pages/MyDonationRequest/MyDonationRequest';
 import AllUsers from '../pages/AdminDashboard/AllUsers/AllUsers';
@@ -17,6 +17,7 @@ import PendingDonationRequest from '../pages/PendingDonationRequest/PendingDonat
 import DonationRequestDetails from '../pages/DonationRequestDetails/DonationRequestDetails';
 import Blog from '../pages/Blog/Blog';
 import BlogDetails from '../pages/BlogDetails/BlogDetails';
+import EditDonationRequest from '../pages/EditDonationRequest/EditDonationRequest';
 
 const Route = createBrowserRouter([
   {
@@ -63,7 +64,7 @@ const Route = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <DashboardWelcome></DashboardWelcome>
+        element: <DashboardHome></DashboardHome>
       },
       {
         path: "profile",
@@ -76,6 +77,10 @@ const Route = createBrowserRouter([
       {
         path: "create-donation-request",
         element: <CreateDonationRequest></CreateDonationRequest>
+      },
+      {
+        path: "edit-donation-request",
+        element: <EditDonationRequest></EditDonationRequest>
       },
       {
         path: "all-users",

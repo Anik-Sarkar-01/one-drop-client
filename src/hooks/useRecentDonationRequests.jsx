@@ -7,7 +7,7 @@ const useRecentDonationRequests = () => {
     const axiosPublic = useAxiosPublic();
     const { user: currentUser } = useAuth();
 
-    const { data: recentRequests, isPending, error, refetch } = useQuery({
+    const { data: recentRequests, isLoading, error, refetch } = useQuery({
         queryKey: [currentUser?.email, 'recentRequests'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/recent-requests/${currentUser?.email}`);
@@ -15,7 +15,7 @@ const useRecentDonationRequests = () => {
         }
     });
 
-    return { recentRequests, isLoading: isPending, error, refetch };
+    return { recentRequests, isLoading, error, refetch };
 };
 
 export default useRecentDonationRequests;

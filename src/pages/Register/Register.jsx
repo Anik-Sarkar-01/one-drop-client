@@ -106,7 +106,7 @@ const Register = () => {
                                 <div className='flex flex-col md:flex-row gap-4'>
                                     {/* avatar */}
                                     <label className="label text-sm font-semibold">AVATAR :</label>
-                                    <input type="file" name='avatar' {...register("avatar", { required: true })} className="file-input w-full" placeholder="avatar" />
+                                    <input type="file" accept='image/*' name='avatar' {...register("avatar", { required: true })} className="file-input w-full" placeholder="avatar" />
                                     {errors.avatar && <span className='text-red-500'>Avatar is required</span>}
 
                                     {/* blood group */}

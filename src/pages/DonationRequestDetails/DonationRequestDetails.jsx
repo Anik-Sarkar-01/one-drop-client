@@ -26,8 +26,8 @@ const DonationRequestDetails = () => {
 
     useEffect(() => {
         if (user) {
-            setValue("name", user.name);
-            setValue("email", user.email);
+            setValue("donorName", user?.name);
+            setValue("donorEmail", user?.email);
         }
     }, [user, setValue]);
 
