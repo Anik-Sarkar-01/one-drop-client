@@ -17,6 +17,7 @@
     "hamburger-react": "^2.5.2",
     "html-react-parser": "^5.2.5",
     "jodit-react": "^5.2.19",
+    "lottie-react": "^2.4.1",
     "react": "^19.1.0",
     "react-datepicker": "^8.3.0",
     "react-dom": "^19.1.0",
@@ -26,7 +27,7 @@
     "react-photo-view": "^1.2.7",
     "react-router-dom": "^7.6.0",
     "react-spinners": "^0.17.0",
-    "sweetalert2": "^11.21.0",
+    "sweetalert2": "^11.6.13",
     "swiper": "^11.2.6",
     "tailwindcss": "^4.1.6"
   },
