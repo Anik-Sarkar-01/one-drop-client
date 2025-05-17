@@ -5,12 +5,14 @@ import useAllDonationRequests from '../../../hooks/useAllDonationRequests';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAuth from '../../../hooks/useAuth';
 import WelcomeMessage from '../../../components/WelcomeMessage/WelcomeMessage';
+import useAdmin from '../../../hooks/useAdmin';
 
 const AllDonationRequests = () => {
     const { allDonationRequests = [], refetch } = useAllDonationRequests();
     const [status, setStatus] = useState('all');
     const axiosPublic = useAxiosPublic();
     const { toastSuccess, toastError } = useAuth();
+    const [isAdmin] = useAdmin();
     const handleFilterChange = (e) => {
         setStatus(e.target.value);
     };
@@ -118,9 +120,14 @@ const AllDonationRequests = () => {
                                     <th>Blood Group</th>
                                     <th>Donation Status</th>
                                     <th>Donor Information</th>
-                                    <th>#</th>
-                                    <th>#</th>
-                                    <th>#</th>
+
+                                    {
+                                        (isAdmin) && <>
+                                            <th>#</th>
+                                            <th>#</th>
+                                            <th>#</th>
+                                        </>
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
@@ -153,9 +160,11 @@ const AllDonationRequests = () => {
                                                 )
                                             }
                                         </td>
-                                        <td><Link to={`/dashboard/edit-donation-request/${request?._id}`} className='btn btn-primary text-white btn-sm'>Edit</Link></td>
-                                        <td><button onClick={() => handleDelete(request?._id)} className='btn btn-error text-white btn-sm'>Delete</button></td>
-                                        <td><Link to={`/donation-request-details/${request?._id}`} className='btn btn-accent text-white btn-sm'>View</Link></td>
+                                        {(isAdmin) && <>
+                                            <td><Link to={`/dashboard/edit-donation-request/${request?._id}`} className='btn bg-blue-400 text-white btn-sm'>Edit</Link></td>
+                                            <td><button onClick={() => handleDelete(request?._id)} className='btn btn-error text-white btn-sm'>Delete</button></td>
+                                            <td><Link to={`/donation-request-details/${request?._id}`} className='btn bg-indigo-400 text-white btn-sm'>View</Link></td>
+                                        </>}
                                     </tr>
                                 ))}
                             </tbody>

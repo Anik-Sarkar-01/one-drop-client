@@ -37,7 +37,7 @@ const ContentManagement = () => {
                         </select>
                     </div>
                 </div>
-                <Link to={"/dashboard/content-management/add-blog"} className='btn bg-red-500 text-white'>Add Blog</Link>
+                <Link to={"/dashboard/content-management/add-blog"} className='btn bg-pink-500 text-white'>Add Blog</Link>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                 {filteredBlogs.map(blog => <BlogCard key={blog._id} blog={blog}></BlogCard>)}

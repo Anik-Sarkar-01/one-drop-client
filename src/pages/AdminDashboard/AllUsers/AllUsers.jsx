@@ -133,13 +133,13 @@ const AllUsers = () => {
                                             <summary className='mt-14'> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path> </svg></summary>
                                             <ul className="bg-base-100 relative right-0 top-20 z-10 rounded-t-none flex gap-2">
                                                 {
-                                                    (user?.status === "Active") && <li><button onClick={() => handleBlock(user?._id)} className='btn btn-error btn-sm'>Block</button></li>
+                                                    (user?.status === "Active") && <li><button onClick={() => handleBlock(user?._id)} className='btn btn-error btn-sm text-white'>Block</button></li>
                                                 }
                                                 {
-                                                    (user?.status === "Blocked") && <li><button onClick={() => handleUnblock(user?._id)} className='btn btn-primary btn-sm'>Unblock</button></li>
+                                                    (user?.status === "Blocked") && <li><button onClick={() => handleUnblock(user?._id)} className='btn bg-pink-400 btn-sm text-white'>Unblock</button></li>
                                                 }
-                                                <li><button onClick={() => handleMakeVolunteer(user?._id)} className='btn btn-accent btn-sm'>Make Volunteer</button></li>
-                                                <li><button onClick={() => handleMakeAdmin(user?._id)} className='btn bg-yellow-300 btn-sm'>Make Admin</button></li>
+                                                <li><button onClick={() => handleMakeVolunteer(user?._id)} className='btn bg-blue-400 btn-sm text-white'>Make Volunteer</button></li>
+                                                <li><button onClick={() => handleMakeAdmin(user?._id)} className='btn bg-indigo-400 btn-sm text-white'>Make Admin</button></li>
                                             </ul>
                                         </details>
                                     </li>
