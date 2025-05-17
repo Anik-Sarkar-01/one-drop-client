@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout/MainLayout';
-import Banner from '../pages/Home/Banner/Banner';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import DashboardLayout from '../layouts/DashboardLayout/DashboardLayout';
@@ -18,6 +17,7 @@ import Blog from '../pages/Blog/Blog';
 import BlogDetails from '../pages/BlogDetails/BlogDetails';
 import EditDonationRequest from '../pages/EditDonationRequest/EditDonationRequest';
 import MyDonationRequests from '../pages/MyDonationRequests/MyDonationRequests';
+import Home from '../pages/Home/Home/Home';
 
 const Route = createBrowserRouter([
   {
@@ -26,7 +26,7 @@ const Route = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Banner></Banner>
+        element: <Home></Home>
       },
       {
         path: "/search-donor",
