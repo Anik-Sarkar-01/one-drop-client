@@ -19,7 +19,7 @@ const Footer = () => {
                     <Link to={"/"} className="link link-hover flex gap-2 items-center"><IoIosPlay className='text-red-500 text-lg' /> Home</Link>
                     <Link to={"/donation-requests"} className="link link-hover flex gap-2 items-center"> <IoIosPlay className='text-red-500 text-lg' /> Donation Requests</Link>
                     <Link to={"/blog"} className="link link-hover flex gap-2 items-center"> <IoIosPlay className='text-red-500 text-lg' /> Blog</Link>
-                    <Link to={"/dashboard"} className="link link-hover flex gap-2 items-center"> <IoIosPlay className='text-red-500 text-lg' /> Dashboard</Link>
+                    <Link to={"/register"} className="link link-hover flex gap-2 items-center"> <IoIosPlay className='text-red-500 text-lg' /> Register</Link>
                 </nav>
                 <nav className='space-y-2'>
                     <h6 className="footer-title text-2xl">Social</h6>
