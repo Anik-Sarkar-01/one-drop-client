@@ -4,6 +4,7 @@ import { useRef, useMemo } from 'react';
 import JoditEditor from 'jodit-react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAuth from '../../../hooks/useAuth';
+import WelcomeMessage from '../../../components/WelcomeMessage/WelcomeMessage';
 
 
 const AddBlog = () => {
@@ -47,46 +48,45 @@ const AddBlog = () => {
 
     return (
         <div>
-            <div className="hero bg-base-200 min-h-screen">
-                <div className="hero-content flex-col">
-                    <div className="card bg-base-100 max-w-full shadow-2xl px-5 py-8">
-                        <div className="text-center lg:text-left">
-                            <h1 className="text-4xl font-bold text-center">Add Blog</h1>
-                        </div>
-                        <div className="card-body">
-                            <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
-                                {/* title field */}
-                                <label className="label">Title</label>
-                                <input
-                                    type='text' placeholder='Title' className="input w-full" {...register("title", { required: true })}
+             <WelcomeMessage heading={"Add your blog"} subheading={""}></WelcomeMessage>
+            <div className='overflow-x-auto py-5'>
+                <div className="overflow-x-auto w-2xl xl:w-3xl bg-base-100 mx-auto rounded-xl shadow-lg p-5">
+                    <div className="text-center lg:text-left">
+                        <h1 className="text-4xl font-bold text-left text-red-500">Add Blog</h1>
+                    </div>
+                    <div className="w-full">
+                        <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
+                            {/* title field */}
+                            <label className="label">Title</label>
+                            <input
+                                type='text' placeholder='Title' className="input w-full" {...register("title", { required: true })}
+                            />
+                            {errors.title && <span className='text-red-500'>Title is required</span>}
+
+                            {/* Image field */}
+                            <label className="label">Thumbnail</label>
+                            <input
+                                type='url' placeholder='Thumbnail' className="input w-full " {...register("thumbnail", { required: true })}
+                            />
+                            {errors.thumbnail && <span className='text-red-500'>Thumbnail is required</span>}
+
+                            {/* content */}
+                            <label className="label">Content</label>
+                            <div>
+                                <JoditEditor
+                                    ref={editor}
+                                    value={content || ""}
+                                    config={config}
+                                    onChange={handleContentChange}
                                 />
-                                {errors.title && <span className='text-red-500'>Title is required</span>}
+                            </div>
+                            {errors.content && <span className="text-red-500">Content is required</span>}
 
-                                {/* Image field */}
-                                <label className="label">Thumbnail</label>
-                                <input
-                                    type='url' placeholder='Thumbnail' className="input w-full" {...register("thumbnail", { required: true })}
-                                />
-                                {errors.thumbnail && <span className='text-red-500'>Thumbnail is required</span>}
-
-                                <label className="label">Content</label>
-                                <div className='w-4xl'>
-                                    <JoditEditor
-                                        ref={editor}
-                                        value={content || ""}
-                                        config={config}
-                                        onChange={handleContentChange}
-                                    />
-                                </div>
-                                {errors.content && <span className="text-red-500">Content is required</span>}
-
-                                <button className="btn btn-neutral mt-4">Create Blog</button>
-                            </form>
-                        </div>
+                            <button className="btn bg-red-500 w-xs text-white mt-4">Create Blog</button>
+                        </form>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
