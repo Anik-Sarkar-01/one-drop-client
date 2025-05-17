@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link} from 'react-router-dom';
 import BlogCard from '../../../components/BlogCard/BlogCard';
 import useBlogs from '../../../hooks/useBlogs';
+import WelcomeMessage from '../../../components/WelcomeMessage/WelcomeMessage';
 
 const ContentManagement = () => {
     const { blogs = [] } = useBlogs();
@@ -19,10 +20,11 @@ const ContentManagement = () => {
         );
     return (
         <div>
-            <div className='flex justify-between'>
+            <WelcomeMessage heading={"Manage Your Contents"} subheading={""}></WelcomeMessage>
+            <div className='flex justify-between pt-5'>
                 <div className="mb-4 flex justify-between items-center">
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-col lg:flex-row items-center gap-2">
                         <label className="font-medium">Filter by Status:</label>
                         <select
                             className="select select-bordered"
@@ -35,9 +37,9 @@ const ContentManagement = () => {
                         </select>
                     </div>
                 </div>
-                <Link to={"/dashboard/content-management/add-blog"} className='btn btn-neutral'>Add Blog</Link>
+                <Link to={"/dashboard/content-management/add-blog"} className='btn bg-red-500 text-white'>Add Blog</Link>
             </div>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                 {filteredBlogs.map(blog => <BlogCard key={blog._id} blog={blog}></BlogCard>)}
             </div>
 

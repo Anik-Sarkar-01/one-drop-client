@@ -52,9 +52,9 @@ const AddBlog = () => {
             <div className='overflow-x-auto py-5'>
                 <div className="overflow-x-auto w-2xl xl:w-3xl bg-base-100 mx-auto rounded-xl shadow-lg p-5">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-4xl font-bold text-left text-red-500">Add Blog</h1>
+                        <h1 className="text-xl md:text-3xl font-bold text-left text-red-500 border-b-4 p-2 w-fit">Add Blog</h1>
                     </div>
-                    <div className="w-full">
+                    <div className="w-full pt-5">
                         <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
                             {/* title field */}
                             <label className="label">Title</label>
