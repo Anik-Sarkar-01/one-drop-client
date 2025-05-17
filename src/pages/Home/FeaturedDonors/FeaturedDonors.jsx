@@ -26,7 +26,7 @@ const FeaturedDonors = () => {
                     <h1 className='text-4xl font-bold text-white text-center uppercase border-b-4 border-b-red-500'>Featured Heroes</h1>
                 </div>
                 <div className='flex flex-col md:flex-row md:w-3xl lg:w-4xl xl:w-6xl mx-auto md:top-48 lg:top-72 xl:top-80 md:left-5 lg:left-14 xl:left-44 md:absolute shadow'>
-                    <div className='md:w-1/2 bg-white py-8'>
+                    <div className='md:w-1/2 bg-base-200 py-8'>
                         {(featuredDonors.length > 0) && (
                             <Swiper
                                 style={{
@@ -46,7 +46,7 @@ const FeaturedDonors = () => {
                             >
                                 {featuredDonors.map(donor =>
                                     <SwiperSlide key={donor._id}>
-                                        <div className="bg-white text-justify px-6 md:px-16 space-y-5">
+                                        <div className="text-justify px-6 md:px-16 space-y-5">
                                             <h2 className="text-xl text-left leading-relaxed font-bold text-red-500 uppercase">
                                                 <span className='text-5xl'><RiDoubleQuotesL /></span> {donor?.quote}
                                             </h2>

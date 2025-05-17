@@ -16,7 +16,7 @@ const ContactUs = () => {
     }
 
     return (
-        <div className='flex flex-col gap-10 lg:flex-row items-center w-full lg:w-4xl xl:w-6xl mx-auto shadow px-20 py-10 mb-20'>
+        <div className='flex bg-base-200 flex-col gap-10 lg:flex-row items-center w-full lg:w-4xl xl:w-6xl mx-auto shadow px-20 py-10 mb-20'>
             <div className='w-full md:w-1/2 space-y-5'>
                 <h1 className='text-3xl font-semibold text-red-500 border-b-4 pb-1 w-fit'>Say Hello To Us</h1>
                 <p className='font-semibold text-xl'>How can we help?</p>
@@ -36,10 +36,10 @@ const ContactUs = () => {
                     </div>
                     <div className='flex items-center gap-3'>
                         <p className='border-2 p-3 rounded-full text-red-500'><FaPhoneAlt /></p>
-                        <p> Mirpur 10, Dhaka, Bangladesh</p></div>
+                        <p>700-456-123</p></div>
                     <div className='flex items-center gap-3'>
                         <p className='border-2 p-3 rounded-full text-red-500'><IoMdMailUnread /></p>
-                        <p>Mirpur 10, Dhaka, Bangladesh</p>
+                        <p>johndoe789@gmail.com</p>
                     </div>
                 </div>
             </div>
