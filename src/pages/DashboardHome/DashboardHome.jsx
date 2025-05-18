@@ -3,7 +3,6 @@ import useRecentDonationRequests from '../../hooks/useRecentDonationRequests';
 import useUser from '../../hooks/useUser';
 import useAdmin from '../../hooks/useAdmin';
 import WelcomeMessage from '../../components/WelcomeMessage/WelcomeMessage';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import useUsers from '../../hooks/useUsers';
@@ -11,6 +10,7 @@ import { FaUsers } from "react-icons/fa6";
 import { FaSackDollar } from "react-icons/fa6";
 import useAllDonationRequests from '../../hooks/useAllDonationRequests';
 import { FaClipboardList } from "react-icons/fa";
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 
 const MyDonationRequest = () => {
@@ -62,7 +62,6 @@ const MyDonationRequest = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 const { data } = await axiosPublic.delete(`/donation-requests/${id}`)
-                console.log(data);
                 if (data.deletedCount > 0) {
                     Swal.fire({
                         title: "Deleted!",

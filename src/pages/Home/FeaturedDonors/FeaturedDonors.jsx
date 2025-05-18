@@ -11,7 +11,6 @@ import { Autoplay, Pagination } from 'swiper/modules';
 
 const FeaturedDonors = () => {
     const { featuredDonors = [] } = useFeaturedDonors();
-    console.log(featuredDonors);
 
     return (
         <div className='mt-24 mb-[700px] md:mb-80'>

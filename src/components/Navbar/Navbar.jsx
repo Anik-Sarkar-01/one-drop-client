@@ -9,12 +9,6 @@ import { Fade as Hamburger } from 'hamburger-react'
 const Navbar = () => {
     const { user, logout, loading, toastSuccess } = useAuth();
 
-    console.log(user);
-
-    if (loading) {
-        return <Loading></Loading>
-    }
-
     const handleLogout = () => {
         logout()
             .then(() => {
@@ -22,6 +16,9 @@ const Navbar = () => {
             })
     }
 
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div className="navbar h-24 bg-base-100 border-b-4 border-b-[#EB2C29]">

@@ -1,18 +1,18 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../components/Loading/Loading';
 import parse from 'html-react-parser';
 import { FaHeart } from "react-icons/fa6";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 
 
 const BlogDetails = () => {
     const params = useParams();
-    const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic();
     const { data: blogDetails, isPending, } = useQuery({
         queryKey: ['blogDetails', params?.id],
         queryFn: async () => {
@@ -24,7 +24,6 @@ const BlogDetails = () => {
     if (isPending) {
         return <Loading></Loading>
     }
-
 
     return (
         <div className='w-full md:w-2xl rounded-lg lg:w-3xl xl:w-4xl mx-auto bg-gray-50 p-10 my-10 space-y-5 text-justify'>

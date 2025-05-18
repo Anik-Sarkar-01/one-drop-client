@@ -12,7 +12,7 @@ const useFeaturedDonors = () => {
         }
     });
 
-    return { featuredDonors, isLoading: isPending, error, refetch };
+    return { featuredDonors, isPending, error, refetch };
 };
 
 export default useFeaturedDonors;

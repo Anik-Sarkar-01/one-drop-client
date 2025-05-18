@@ -5,7 +5,7 @@ import useAxiosPublic from './useAxiosPublic';
 const usePendingDonationRequests = () => {
     const axiosPublic = useAxiosPublic();
 
-    const { data: pendingDonationRequests, isLoading, isError } = useQuery({
+    const { data: pendingDonationRequests, isPending, isError } = useQuery({
         queryKey: ['pending-donation-requests', 'pending'],
         queryFn: async () => {
             const { data } = await axiosPublic.get('/pending-donation-requests?status=Pending');
@@ -13,7 +13,7 @@ const usePendingDonationRequests = () => {
         }
     });
 
-    return { pendingDonationRequests, isLoading, isError };
+    return { pendingDonationRequests, isPending, isError };
 };
 
 export default usePendingDonationRequests;

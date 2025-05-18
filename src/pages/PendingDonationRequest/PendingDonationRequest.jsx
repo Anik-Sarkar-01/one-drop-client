@@ -5,22 +5,20 @@ import RequestCard from '../../components/RequestCard/RequestCard';
 
 
 const PendingDonationRequest = () => {
-    const { pendingDonationRequests, isLoading } = usePendingDonationRequests();
+    const { pendingDonationRequests, isPending } = usePendingDonationRequests();
 
     return (
         <div>
             {
-                isLoading ?
+                isPending ?
                     <>
                         <Loading></Loading>
                     </>
                     :
-
-
                     <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 py-14 place-items-center'>
-                        {
-                            pendingDonationRequests.map(request => <RequestCard key={request._id} request={request}></RequestCard>)
-                        }
+                        {pendingDonationRequests.map((request) => (
+                            <RequestCard key={request._id} request={request}></RequestCard>
+                        ))}
                     </div>
 
             }

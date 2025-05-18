@@ -16,30 +16,33 @@ const ContactUs = () => {
     }
 
     return (
-        <div className='flex bg-base-200 flex-col gap-10 lg:flex-row items-center w-full lg:w-4xl xl:w-6xl mx-auto shadow px-20 py-10 mb-20'>
-            <div className='w-full md:w-1/2 space-y-5'>
-                <h1 className='text-3xl font-semibold text-red-500 border-b-4 pb-1 w-fit'>Say Hello To Us</h1>
-                <p className='font-semibold text-xl'>How can we help?</p>
-                <form onSubmit={handleSubmit} className='flex flex-col gap-3 space-y-5'>
-                    <input type="text" required placeholder="Enter your name" className="input w-full input-md bg-red-500/10 border-none  focus:outline-none" />
-                    <input type="text" required placeholder="Enter your email address" className="input w-full input-md bg-red-500/10 border-none focus:outline-none" />
-                    <textarea placeholder="Type your message..." required className="textarea w-full textarea-md bg-red-500/10 border-none focus:outline-none"></textarea>
-                    <button className="btn w-full btn-xs sm:btn-sm md:btn-md bg-red-500 text-white">Submit</button>
-                </form>
-            </div>
-            <div className='w-full md:w-1/2 flex flex-col items-center'>
-                <Lottie className='w-sm xl:w-md' animationData={contactAnimation} loop={true} />
-                <div className='flex flex-col gap-5'>
-                    <div className='flex items-center gap-3'>
-                        <p className='border-2 p-3 rounded-full text-red-500'><FaLocationDot /></p>
-                        <p>Mirpur 10, Dhaka, Bangladesh</p>
-                    </div>
-                    <div className='flex items-center gap-3'>
-                        <p className='border-2 p-3 rounded-full text-red-500'><FaPhoneAlt /></p>
-                        <p>700-456-123</p></div>
-                    <div className='flex items-center gap-3'>
-                        <p className='border-2 p-3 rounded-full text-red-500'><IoMdMailUnread /></p>
-                        <p>johndoe789@gmail.com</p>
+        <div>
+            <h2 className='text-4xl font-bold mb-10 text-red-500 border-b-4 w-fit mx-auto'>Contact Us</h2>
+            <div className='flex bg-base-200 flex-col gap-10 lg:flex-row items-center w-full lg:w-4xl xl:w-6xl mx-auto shadow px-20 py-10 mb-20'>
+                <div className='w-full md:w-1/2 space-y-5'>
+                    <h1 className='text-3xl font-semibold text-red-500 border-b-4 pb-1 w-fit'>Say Hello To Us</h1>
+                    <p className='font-semibold text-xl'>How can we help?</p>
+                    <form onSubmit={handleSubmit} className='flex flex-col gap-3 space-y-5'>
+                        <input type="text" required placeholder="Enter your name" className="input w-full input-md bg-red-500/10 border-none  focus:outline-none" />
+                        <input type="text" required placeholder="Enter your email address" className="input w-full input-md bg-red-500/10 border-none focus:outline-none" />
+                        <textarea placeholder="Type your message..." required className="textarea w-full textarea-md bg-red-500/10 border-none focus:outline-none"></textarea>
+                        <button className="btn w-full btn-xs sm:btn-sm md:btn-md bg-red-500 text-white">Submit</button>
+                    </form>
+                </div>
+                <div className='w-full md:w-1/2 flex flex-col items-center'>
+                    <Lottie className='w-sm xl:w-md' animationData={contactAnimation} loop={true} />
+                    <div className='flex flex-col gap-5'>
+                        <div className='flex items-center gap-3'>
+                            <p className='border-2 p-3 rounded-full text-red-500'><FaLocationDot /></p>
+                            <p>Mirpur 10, Dhaka, Bangladesh</p>
+                        </div>
+                        <div className='flex items-center gap-3'>
+                            <p className='border-2 p-3 rounded-full text-red-500'><FaPhoneAlt /></p>
+                            <p>700-456-123</p></div>
+                        <div className='flex items-center gap-3'>
+                            <p className='border-2 p-3 rounded-full text-red-500'><IoMdMailUnread /></p>
+                            <p>johndoe789@gmail.com</p>
+                        </div>
                     </div>
                 </div>
             </div>

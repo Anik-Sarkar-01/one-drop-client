@@ -5,7 +5,7 @@ import useAxiosPublic from './useAxiosPublic';
 const usePublishedBlogs = () => {
     const axiosPublic = useAxiosPublic();
 
-    const { data: publishedBlogs, isLoading, isError } = useQuery({
+    const { data: publishedBlogs, isPending, isError } = useQuery({
         queryKey: ['published-blogs', 'published'],
         queryFn: async () => {
             const { data } = await axiosPublic.get('/published-blogs?status=published');
@@ -13,7 +13,7 @@ const usePublishedBlogs = () => {
         }
     });
 
-    return { publishedBlogs, isLoading, isError };
+    return { publishedBlogs, isPending, isError };
 };
 
 export default usePublishedBlogs;

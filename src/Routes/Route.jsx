@@ -66,45 +66,64 @@ const Route = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute>
+      <DashboardLayout></DashboardLayout>
+    </PrivateRoute>,
     children: [
       {
         path: "/dashboard",
-        element: <DashboardHome></DashboardHome>
+        element: <PrivateRoute>
+          <DashboardHome></DashboardHome>
+        </PrivateRoute>
       },
       {
         path: "profile",
-        element: <Profile></Profile>
+        element: <PrivateRoute>
+          <Profile></Profile>
+        </PrivateRoute>
       },
       {
         path: "my-donation-requests",
-        element: <MyDonationRequests></MyDonationRequests>
+        element: <PrivateRoute>
+          <MyDonationRequests></MyDonationRequests>
+        </PrivateRoute>
       },
       {
         path: "create-donation-request",
-        element: <CreateDonationRequest></CreateDonationRequest>
+        element: <PrivateRoute>
+          <CreateDonationRequest></CreateDonationRequest>
+        </PrivateRoute>
       },
       {
         path: "edit-donation-request/:id",
-        element: <EditDonationRequest></EditDonationRequest>
+        element: <PrivateRoute>
+          <EditDonationRequest></EditDonationRequest>
+        </PrivateRoute>
       },
       {
         path: "all-users",
-        element: <AllUsers></AllUsers>,
+        element: <PrivateRoute>
+          <AllUsers></AllUsers>
+        </PrivateRoute>,
       },
       {
         path: "all-donation-requests",
-        element: <AllDonationRequests></AllDonationRequests>
+        element: <PrivateRoute>
+          <AllDonationRequests></AllDonationRequests>
+        </PrivateRoute>
       },
       {
         path: "content-management",
-        element: <ContentManagement></ContentManagement>,
+        element: <PrivateRoute>
+          <ContentManagement></ContentManagement>
+        </PrivateRoute>,
       },
       {
         path: "content-management/add-blog",
-        element: <AddBlog></AddBlog>
-      }
-
+        element: <PrivateRoute>
+          <AddBlog></AddBlog>
+        </PrivateRoute>
+      },
     ]
   }
 ]);

@@ -1,21 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Loading from '../../components/Loading/Loading';
 import { useForm } from 'react-hook-form';
-
 import useUser from '../../hooks/useUser';
 import { useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 import WelcomeMessage from '../../components/WelcomeMessage/WelcomeMessage';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+
 
 const DonationRequestDetails = () => {
     const params = useParams();
-    const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic()
     const { user } = useUser();
     const { toastSuccess, toastError } = useAuth();
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
-
+    
     const { data: donationDetails, isPending, refetch, error } = useQuery({
         queryKey: ['donationDetails', params?.id],
         queryFn: async () => {
@@ -54,14 +54,12 @@ const DonationRequestDetails = () => {
         document.getElementById('my_modal_5').close();
     }
 
-
-
     if (isPending) {
         return <Loading></Loading>
     }
 
     if (error) {
-        return <p className='text-2xl font-semibold text-rose-300'>Error Occurred! Try again!</p>
+        return <p className='text-2xl font-semibold text-rose-300 text-center'>Error Occurred! Try again!</p>
     }
 
     return (

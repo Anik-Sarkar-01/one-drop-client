@@ -13,7 +13,7 @@ const useBlogs = () => {
         }
     });
 
-    return { blogs, isLoading: isPending, error, refetch };
+    return { blogs, isPending, error, refetch };
 };
 
 export default useBlogs;

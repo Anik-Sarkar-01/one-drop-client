@@ -7,7 +7,7 @@ const useUser = () => {
     const axiosPublic = useAxiosPublic();
     const { user: currentUser } = useAuth();
 
-    const { data: user, isPending, error, refetch } = useQuery({
+    const { data: user, isPending: userPending, error, refetch } = useQuery({
         queryKey: [currentUser?.email, 'user'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/users/${currentUser?.email}`);
@@ -15,7 +15,7 @@ const useUser = () => {
         }
     });
 
-    return { user, isLoading: isPending, error, refetch };
+    return { user, userPending, error, refetch };
 };
 
 export default useUser;

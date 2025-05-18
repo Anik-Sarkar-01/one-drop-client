@@ -13,7 +13,7 @@ const useAllDonationRequests = () => {
         }
     });
 
-    return { allDonationRequests, isLoading: isPending, error, refetch };
+    return { allDonationRequests, isPending, error, refetch };
 };
 
 export default useAllDonationRequests;

@@ -25,7 +25,6 @@ const AllUsers = () => {
             status: "Blocked",
         }
         const { data } = await axiosPublic.patch(`/change-user-status/${id}`, userStatus);
-        console.log(data);
         if (data.modifiedCount > 0) {
             toastSuccess("User Blocked.");
             refetch();

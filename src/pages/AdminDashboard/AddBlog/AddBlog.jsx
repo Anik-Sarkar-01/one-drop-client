@@ -36,19 +36,22 @@ const AddBlog = () => {
         }
         axiosPublic.post("/blogs", blog)
             .then((response) => {
-                console.log(response);
-                toastSuccess("Added.")
+                if (response?.data?.insertedId) {
+                    toastSuccess("Added.")
+                }
+
             })
             .catch((error) => {
-                console.log(error);
-                toastError("Error")
+                if (error) {
+                    toastError("Error")
+                }
             })
     }
 
 
     return (
         <div>
-             <WelcomeMessage heading={"Add your blog"} subheading={""}></WelcomeMessage>
+            <WelcomeMessage heading={"Add your blog"} subheading={""}></WelcomeMessage>
             <div className='overflow-x-auto py-5'>
                 <div className="overflow-x-auto w-2xl xl:w-3xl bg-base-100 mx-auto rounded-xl shadow-lg p-5">
                     <div className="text-center lg:text-left">
