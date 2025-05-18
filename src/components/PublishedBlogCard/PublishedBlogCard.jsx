@@ -7,14 +7,15 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const PublishedBlogCard = ({ blog }) => {
     const { title, content } = blog;
+    console.log(blog);
 
     return (
 
         <div className="card lg:card-side bg-base-100 shadow-sm">
             <figure className='w-full lg:w-4/12'>
                 <img
-                    src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-                    alt="Album" />
+                    src={blog?.thumbnail}
+                    alt="thumbnail photo" />
             </figure>
             <div className="card-body w-full lg:w-8/12">
                 <h2 className="card-title">{title}</h2>

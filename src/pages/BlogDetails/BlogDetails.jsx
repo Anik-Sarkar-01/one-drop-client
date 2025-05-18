@@ -28,8 +28,8 @@ const BlogDetails = () => {
     return (
         <div className='w-full md:w-2xl rounded-lg lg:w-3xl xl:w-4xl mx-auto bg-gray-50 p-10 my-10 space-y-5 text-justify'>
             <PhotoProvider>
-                <PhotoView src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp">
-                    <img className='w-full h-80 object-cover rounded-lg' src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp" alt="" />
+                <PhotoView src={blogDetails?.thumbnail}>
+                    <img className='w-full h-80 object-cover rounded-lg' src={blogDetails?.thumbnail} alt="thumbnail photo" />
                 </PhotoView>
 
             </PhotoProvider>
