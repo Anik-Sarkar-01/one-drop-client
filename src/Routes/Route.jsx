@@ -18,11 +18,13 @@ import BlogDetails from '../pages/BlogDetails/BlogDetails';
 import EditDonationRequest from '../pages/EditDonationRequest/EditDonationRequest';
 import MyDonationRequests from '../pages/MyDonationRequests/MyDonationRequests';
 import Home from '../pages/Home/Home/Home';
+import PrivateRoute from './PrivateRoute';
 
 const Route = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <p className='text-red-lg'>Error Occurred.</p>,
     children: [
       {
         path: "/",
@@ -47,14 +49,18 @@ const Route = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>
-      }, 
+      },
       {
         path: "donation-request-details/:id",
-        element: <DonationRequestDetails></DonationRequestDetails>
+        element: <PrivateRoute>
+          <DonationRequestDetails></DonationRequestDetails>
+        </PrivateRoute>
       },
       {
         path: "blog-details/:id",
-        element: <BlogDetails></BlogDetails>
+        element: <PrivateRoute>
+          <BlogDetails></BlogDetails>
+        </PrivateRoute>
       }
     ]
   },

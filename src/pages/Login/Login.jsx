@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from "../../hooks/useAuth";
 import WelcomeMessage from "../../components/WelcomeMessage/WelcomeMessage";
 
@@ -8,6 +8,8 @@ const Login = () => {
     const { login, toastSuccess, toastError } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const location = useLocation();
+
     const onSubmit = data => {
         const email = data?.email;
         const password = data?.password;
@@ -16,7 +18,7 @@ const Login = () => {
                 if (res?.user) {
                     toastSuccess("Login Successful.")
                 }
-                navigate("/");
+                navigate(location?.state ? location.state : "/");
             })
             .catch(error => {
                 toastError(error?.code)
