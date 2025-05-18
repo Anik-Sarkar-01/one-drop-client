@@ -7,7 +7,6 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const PublishedBlogCard = ({ blog }) => {
     const { title, content } = blog;
-    console.log(blog);
 
     return (
 
