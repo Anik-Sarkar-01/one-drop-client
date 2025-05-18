@@ -79,8 +79,8 @@ const DonationRequestDetails = () => {
                         <p><span className='font-semibold'>Blood Group:</span> {donationDetails?.bloodGroup}</p>
                         <h2><span className='font-semibold'>Donation Date:</span> {donationDetails?.donationDate}</h2>
                         <h2><span className='font-semibold'>Donation Time:</span> {donationDetails?.donationTime}</h2>
-                        <h2><span className='font-semibold'>Requested By:</span> {donationDetails?.requesterName}</h2>
-                        <h2><span className='font-semibold'>Requester Email:</span> {donationDetails?.requesterEmail}</h2>
+                        <h2 className='text-sm text-red-500'><span >Requested By:</span> {donationDetails?.requesterName}</h2>
+                        <h2 className='text-sm text-red-500'><span>Requester Email:</span> {donationDetails?.requesterEmail}</h2>
                     </div>
                     <div className='space-y-3 py-5'>
                         <p className='font-semibold'>Request Message: </p>

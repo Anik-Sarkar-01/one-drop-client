@@ -75,15 +75,18 @@ const Profile = () => {
                             }
                             else {
                                 toastError("Nothing to update!")
+                                setLoading(false)
                             }
                         })
                         .catch((error) => {
                             toastError(`${error?.message}`)
+                            setLoading(false);
                         });
                     setIsEditable(false);
                 })
                 .catch((error) => {
                     toastError(`${error?.message}`)
+                    setLoading(false);
                 })
         }
     }

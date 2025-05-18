@@ -72,57 +72,39 @@ const Route = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <PrivateRoute>
-          <DashboardHome></DashboardHome>
-        </PrivateRoute>
+        element: <DashboardHome></DashboardHome>
       },
       {
         path: "profile",
-        element: <PrivateRoute>
-          <Profile></Profile>
-        </PrivateRoute>
+        element: <Profile></Profile>
       },
       {
         path: "my-donation-requests",
-        element: <PrivateRoute>
-          <MyDonationRequests></MyDonationRequests>
-        </PrivateRoute>
+        element: <MyDonationRequests></MyDonationRequests>
       },
       {
         path: "create-donation-request",
-        element: <PrivateRoute>
-          <CreateDonationRequest></CreateDonationRequest>
-        </PrivateRoute>
+        element: <CreateDonationRequest></CreateDonationRequest>
       },
       {
         path: "edit-donation-request/:id",
-        element: <PrivateRoute>
-          <EditDonationRequest></EditDonationRequest>
-        </PrivateRoute>
+        element: <EditDonationRequest></EditDonationRequest>
       },
       {
         path: "all-users",
-        element: <PrivateRoute>
-          <AllUsers></AllUsers>
-        </PrivateRoute>,
+        element: <AllUsers></AllUsers>
       },
       {
-        path: "all-donation-requests",
-        element: <PrivateRoute>
-          <AllDonationRequests></AllDonationRequests>
-        </PrivateRoute>
+        path: "all-blood-donation-requests",
+        element: <AllDonationRequests></AllDonationRequests>
       },
       {
         path: "content-management",
-        element: <PrivateRoute>
-          <ContentManagement></ContentManagement>
-        </PrivateRoute>,
+        element: <ContentManagement></ContentManagement>
       },
       {
         path: "content-management/add-blog",
-        element: <PrivateRoute>
-          <AddBlog></AddBlog>
-        </PrivateRoute>
+        element: <AddBlog></AddBlog>
       },
     ]
   }

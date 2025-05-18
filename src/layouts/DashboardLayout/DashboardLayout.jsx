@@ -31,7 +31,7 @@ const DashboardLayout = () => {
                                 <NavLink to={"/dashboard/all-users"}>All Users</NavLink>
                             </li>
                             <li>
-                                <NavLink to={"/dashboard/all-donation-requests"}>All Blood Donation Request</NavLink>
+                                <NavLink to={"/dashboard/all-blood-donation-requests"}>All Blood Donation Request</NavLink>
                             </li>
                             <li>
                                 <NavLink to={"/dashboard/content-management"}> Content Management</NavLink>
@@ -52,7 +52,7 @@ const DashboardLayout = () => {
                                 <NavLink to={"/dashboard"}>Volunteer Dashboard</NavLink>
                             </li>
                             <li>
-                                <NavLink to={"/dashboard/all-donation-requests"}>All Blood Donation Request</NavLink>
+                                <NavLink to={"/dashboard/all-blood-donation-requests"}>All Blood Donation Request</NavLink>
                             </li>
                             <li>
                                 <NavLink to={"/dashboard/content-management"}>Content Management</NavLink>

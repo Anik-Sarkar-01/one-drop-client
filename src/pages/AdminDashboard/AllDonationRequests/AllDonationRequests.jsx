@@ -113,7 +113,7 @@ const AllDonationRequests = () => {
                                 <tr className='bg-red-500 text-white'>
                                     <th className='py-5'>#</th>
                                     <th>Recipient Name</th>
-                                    <th>Recipient Address</th>
+                                    <th>Recipient Location</th>
                                     <th>Donation Date</th>
                                     <th>Donation Time</th>
                                     <th>Blood Group</th>

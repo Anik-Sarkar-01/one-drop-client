@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import logo from '../../assets/logo.png'
-import Loading from '../Loading/Loading';
 import userPhoto from '../../assets/user.png'
 import { Fade as Hamburger } from 'hamburger-react'
 
 const Navbar = () => {
-    const { user, logout, loading, toastSuccess } = useAuth();
+    const { user, logout, toastSuccess } = useAuth();
 
     const handleLogout = () => {
         logout()
@@ -16,9 +15,6 @@ const Navbar = () => {
             })
     }
 
-    if (loading) {
-        return <Loading></Loading>
-    }
 
     return (
         <div className="navbar h-24 bg-base-100 border-b-4 border-b-[#EB2C29]">

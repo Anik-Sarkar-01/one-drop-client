@@ -5,28 +5,27 @@ import { auth } from '../firebase/firebase.config';
 import toast from 'react-hot-toast';
 
 
-
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const createUser = (email, password) => {
-        setLoading(true);
+        setLoading(false);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const login = (email, password) => {
-        setLoading(true);
+        setLoading(false);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     const logout = () => {
-        setLoading(true);
+        setLoading(false);
         return signOut(auth);
     }
 
     const updateUserProfile = (name, photo) => {
-        setLoading(true);
+        setLoading(false);
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo,
